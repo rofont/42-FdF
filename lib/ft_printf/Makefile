@@ -6,10 +6,20 @@
 #    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 11:36:23 by rofontai          #+#    #+#              #
-#    Updated: 2023/04/20 14:06:42 by rofontai         ###   ########.fr        #
+#    Updated: 2023/04/21 09:06:38 by rofontai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+#COLORS------------------------------------------------------------------------
+
+R = $(shell tput -Txterm setaf 1)
+G = $(shell tput -Txterm setaf 2)
+W = $(shell tput -Txterm setaf 7)
+C = $(shell tput -Txterm setaf 6)
+Y = $(shell tput -Txterm setaf 3)
+Z = $(shell tput -Txterm setaf 5)
+
+#ARGUMENTS---------------------------------------------------------------------
 NAME = libftprintf.a
 
 SRC = ft_printf.c 		\
@@ -19,26 +29,33 @@ SRC = ft_printf.c 		\
 		ft_arg_value.c	\
 		ft_printptr.c	\
 
-OBJ = ${SRC:.c=.o}
+OBJ_DIR	= ./obj
+OBJS	= ${SRC:%.c=${OBJ_DIR}/%.o}
+CC		= gcc
+CFLAGS	= -Wall -Wextra -Werror
 
-CC   = gcc
+#VARIABLE----------------------------------------------------------------------
+all: creat ${NAME}
+	@echo "\n#-----$CFT_PRINTF ready$W ✅---------------#\n"
 
-CFLAGS = -Wall -Wextra -Werror
-
-all: ${NAME}
-
-${NAME}: ${OBJ}
-	@ar -rcs  ${NAME} ${OBJ}
+$(OBJ_DIR)/%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$G Compilation : $Z $<"$W
 
-clean:
-	@rm -rf ${OBJ}
-	@echo "\n#-----$RFT_PRINTF clean$W ❌---------------#\n"
+${NAME}: ${OBJS}
+	@ar -rcs  ${NAME} ${OBJS}
 
+creat:
+	@mkdir -p ${OBJ_DIR}
+
+clean:
+	@rm -f ${OBJS}
+	@rm -rf ${OBJ_DIR}
+	@echo "\n#-----$R FT_PRINTF clean$W ❌--------------#\n"
 fclean: clean
 	@rm -f ${NAME}
-	@echo "nettoyage poussé"
+	@echo "\n#-----$R FT_PRINTF all clean$W ❌----------#\n"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re creat

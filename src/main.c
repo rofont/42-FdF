@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:02:32 by rofontai          #+#    #+#             */
-/*   Updated: 2023/04/20 13:03:45 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/04/21 09:42:09 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int main ()
 {
-	ft_printf ("la vie est du chocolat");
+	ft_printf ("la vie est du chocolat\n");
 	return (0);
 }

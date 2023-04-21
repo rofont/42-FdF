@@ -60,52 +60,77 @@ NAME	= fdf
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -g #-lm
 
+SRC_DIR	= ./src
+SRC		= main_test2.c
 
-DIR_SRC	= ./src
-SRC		= main.c
-
-DIR_OBJ	= ./obj
-OBJ		= $(addprefix $(DIR_OBJ)/, $(SRC:.c=.o))
+OBJ_DIR	= ./obj
+OBJ		= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 LIB_MLX	= ./lib/MLX42
+MLX		= $(LIB_MLX)/build/libmlx42.a
+OS		= $(shell uname)
+OS_PRO	= $(shell uname -p)
 MAC_SCH	= -I /include -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
 MAC_PRO	= -I /include -lglfw -L "/opt/homebrew/Cellar/glfw/3.3.8/lib"
 
-DIR_LIBFT	= ./lib/libft
-LIBFT	= $(DIR_LIBFT)/libft.a
+HEAD_DIR 	=   ./include
+HEADER      =   $(HEAD_DIR)/fdf.h
 
-DIR_PRINTF	= ./lib/ft_printf
-PRINTF	= $(DIR_PRINTF)/libftprintf.a
+LIBFT_DIR	= ./lib/libft
+LIBFT	= $(LIBFT_DIR)/libft.a
+
+PRINTF_DIR	= ./lib/ft_printf
+PRINTF	= $(PRINTF_DIR)/libftprintf.a
+
+# CHECK OS---------------------------------------------------------------------
+
+ifeq ($(OS_PRO), arm)
+    FLAGS = $(MAC_PRO)
+else ifeq ($(OS), Darwin)
+    FLAGS = $(MAC_SCH)
+endif
 
 # ARGUMENTS--------------------------------------------------------------------
 
-all:	mlx  $(PRINTF) $(LIBFT) $(NAME)
+all	: $(NAME)
+	@echo $G"$$BANNER"$W
+	@echo "\n#-----$CFDF ready$W ✅---------------#\n"
 
-mlx:
+mlx	:
 	@cmake $(LIB_MLX) -B $(LIB_MLX)/build && make -C $(LIB_MLX)/build -j4
 
+$(NAME)	:	mlx $(OBJ_DIR) $(PRINTF) $(LIBFT) $(OBJ)
+	@$(CC) $(CFLAGS) $(PRINTF) $(LIBFT) $(OBJ) $(MLX) $(FLAGS) -o $(NAME)
 
-$(PRINTF):
-	@make -C $(DIR_PRINTF)
 
-$(LIBFT):
-	@make -C $(DIR_LIBFT)
+$(OBJ_DIR)/%.o	:	$(SRC_DIR)/%.c $(HEADER)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$G Compilation : $Z $(notdir $<)"$W
 
-clean:
-	@rm -rf $(DIR_OBJ)
-	@make clean -C $(DIR_PRINTF)
-	@make clean -C $(DIR_LIBFT)
+$(OBJ_DIR)	:
+	@mkdir -p $@
+
+$(PRINTF)	:
+	@make -C $(PRINTF_DIR)
+
+$(LIBFT)	:
+	@make -C $(LIBFT_DIR)
+
+clean	:
+	@rm -rf $(OBJ_DIR)
+	@make clean -C $(PRINTF_DIR)
+	@make clean -C $(LIBFT_DIR)
 	@rm -f $(OBJS)
-	@rm -rf $(LIB_MLX)/build
-	@echo "\n#-----$RMLX clean$W ❌---------------------#\n"
+#	@rm -rf $(LIB_MLX)/build
+#	@echo "\n#-----$RMLX clean$W ❌---------------------#\n"
 	@echo "\n#-----$RFDF clean$W ❌---------------------#\n"
 
-fclean: clean
+fclean	:	clean
 	@rm -f $(NAME)
 	@rm -f $(LIBFT)
 	@rm -f $(PRINTF)
 	@echo "\n#-----$RFDF fclean$W ❌--------------------#\n"
 
-re: clean all
+re	:	clean all
 
-.PHONY: all, mlx, clean, fclean, re
+.PHONY	: all, mlx, clean, fclean, re

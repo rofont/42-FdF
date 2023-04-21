@@ -67,7 +67,7 @@ int32_t main(int32_t argc, const char* argv[])
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	if (!(image = mlx_new_image(mlx, 250, 250)))
+	if (!(image = mlx_new_image(mlx, 100, 100)))
 	{
 		mlx_close_window(mlx);
 		puts(mlx_strerror(mlx_errno));

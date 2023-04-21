@@ -6,7 +6,7 @@
 #    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:49:17 by rofontai          #+#    #+#              #
-#    Updated: 2023/04/20 13:44:13 by rofontai         ###   ########.fr        #
+#    Updated: 2023/04/21 09:07:37 by rofontai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,10 +46,10 @@ CFLAGS = -Wall -Wextra -Werror
 
 ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c
 	@${CC} ${CFLAGS} -c $< -o $@
-	@echo "$G Compilation : $Z $<"$W
+	@echo "$G Compilation : $Z $(notdir $<)"$W
 
 all: creat ${NAME}
-	@echo "\n#-----$CLIBFT is already$W--------#\n"
+	@echo "\n#-----$CLIBFT already$W----------#\n"
 
 ${NAME}: ${OBJS}
 	@ar -rsc  ${NAME} ${OBJS}
