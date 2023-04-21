@@ -1,36 +1,14 @@
-# NAME	:= Game
-# CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
-# LIBMLX	:= ./lib/MLX42
-
-# HEADERS	:= -I ./include -I $(LIBMLX)/include
-# LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -pthread -lm -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
-# SRCS	:= ./src/main_test2.c
-# #$(shell find ./src -iname "*.c")
-# OBJS	:= ${SRCS:.c=.o}
-
-# all: libmlx $(NAME)
-
-# libmlx:
-# 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
-
-# %.o: %.c
-# 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
-
-# $(NAME): $(OBJS)
-# 	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
-
-# clean:
-# 	@rm -f $(OBJS)
-# 	@rm -f $(LIBMLX)/build
-
-# fclean: clean
-# 	@rm -f $(NAME)
-
-# re: clean all
-
-# .PHONY: all, clean, fclean, re, libmlx
-
-# BANNER-----------------------------------------------------------------------
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/04/21 10:43:15 by rofontai          #+#    #+#              #
+#    Updated: 2023/04/21 10:54:30 by rofontai         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 define BANNER
 
@@ -96,10 +74,10 @@ all	: $(NAME)
 	@echo $G"$$BANNER"$W
 	@echo "\n#-----$CFDF ready$W ✅---------------#\n"
 
-mlx	:
+$(MLX)	:
 	@cmake $(LIB_MLX) -B $(LIB_MLX)/build && make -C $(LIB_MLX)/build -j4
 
-$(NAME)	:	mlx $(OBJ_DIR) $(PRINTF) $(LIBFT) $(OBJ)
+$(NAME)	:  $(MLX) $(OBJ_DIR) $(PRINTF) $(LIBFT) $(OBJ)
 	@$(CC) $(CFLAGS) $(PRINTF) $(LIBFT) $(OBJ) $(MLX) $(FLAGS) -o $(NAME)
 
 
@@ -120,9 +98,9 @@ clean	:
 	@rm -rf $(OBJ_DIR)
 	@make clean -C $(PRINTF_DIR)
 	@make clean -C $(LIBFT_DIR)
-	@rm -f $(OBJS)
+#	@rm -f $(OBJS)
 #	@rm -rf $(LIB_MLX)/build
-#	@echo "\n#-----$RMLX clean$W ❌---------------------#\n"
+	@echo "\n#-----$RMLX clean$W ❌---------------------#\n"
 	@echo "\n#-----$RFDF clean$W ❌---------------------#\n"
 
 fclean	:	clean
@@ -131,6 +109,6 @@ fclean	:	clean
 	@rm -f $(PRINTF)
 	@echo "\n#-----$RFDF fclean$W ❌--------------------#\n"
 
-re	:	clean all
+re	:	fclean all
 
 .PHONY	: all, mlx, clean, fclean, re
