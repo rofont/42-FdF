@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 13:53:36 by rofontai          #+#    #+#             */
-/*   Updated: 2022/12/15 14:00:30 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/04/21 21:23:36 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	*calloc_ptr(size_t count, size_t size)
 	ptr = malloc(count * size);
 	if (!ptr)
 		return (0);
-	ft_bzero(ptr, (count * size));
+	f_bzero(ptr, (count * size));
 	return (ptr);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	f_bzero(void *s, size_t n)
 {
 	size_t	i;
 	char	*temp;
@@ -58,17 +58,17 @@ void	*free_ft(char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*save[OPEN_MAX];
+	static char	*save;
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
 		return (0);
-	save[fd] = ft_read(fd, save[fd]);
-	if (!save[fd])
-		return (free_ft(save[fd]));
-	line = extract_line(save[fd], '\n');
-	save[fd] = crop_save(save[fd], '\n');
+	save = ft_read(fd, save);
+	if (!save)
+		return (free_ft(save));
+	line = extract_line(save, '\n');
+	save = crop_save(save, '\n');
 	if (!line)
-		return (free_ft(save[fd]));
+		return (free_ft(save));
 	return (line);
 }

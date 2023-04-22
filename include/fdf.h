@@ -8,6 +8,7 @@
 # include <stdbool.h>
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "../lib/libft/include/libft.h"
+# include "../lib/libft/include/get_next_line.h"
 # include "../lib/ft_printf/include/ft_printf.h"
 
 // COLOR-----------------------------------------------------------------------

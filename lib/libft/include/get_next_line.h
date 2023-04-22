@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 13:57:43 by rofontai          #+#    #+#             */
-/*   Updated: 2023/01/26 15:03:24 by romain           ###   ########.fr       */
+/*   Updated: 2023/04/21 21:21:50 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*join(char *save, char *buff);
 int		search_nline(char *save, char c);
 char	*extract_line(char *save, char c);
 char	*crop_save(char *save, char c);
-void	ft_bzero(void *s, size_t n);
+void	f_bzero(void *s, size_t n);
 void	*free_ft(char *str);
 
 #endif

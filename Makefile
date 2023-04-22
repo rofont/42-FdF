@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
+#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 10:43:15 by rofontai          #+#    #+#              #
-#    Updated: 2023/04/21 10:54:30 by rofontai         ###   ########.fr        #
+#    Updated: 2023/04/21 21:00:50 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ define BANNER
    _$G/\/\/\/\/\$W____$G/\/\$W____$G/\/\$W__________$G/\/\/\/\$W__$G/\/\/\/\/\$W______$G/\/\/\/\/\$W____$G/\/\/\/\/\$W__$G/\/\/\/\$W___
   _$G/\/\$W__________$G/\/\$W____$G/\/\$W________$G/\/\$W__$G/\/\$W__$G/\/\$W____________$G/\/\$W__________$G/\/\$W________$G/\/\$W_______
  _$G/\/\$W__________$G/\/\/\$W__$G/\/\/\$W________$G/\/\/\/\$W____$G/\/\/\/\$W______$G/\/\$W____________$G/\/\/\/\$W__$G/\/\$W_______
-____________________________________________________________________________________________________
 
 endef
 export
@@ -39,7 +38,7 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -g #-lm
 
 SRC_DIR	= ./src
-SRC		= main_test2.c
+SRC		= main.c
 
 OBJ_DIR	= ./obj
 OBJ		= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
@@ -49,7 +48,7 @@ MLX		= $(LIB_MLX)/build/libmlx42.a
 OS		= $(shell uname)
 OS_PRO	= $(shell uname -p)
 MAC_SCH	= -I /include -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
-MAC_PRO	= -I /include -lglfw -L "/opt/homebrew/Cellar/glfw/3.3.8/lib"
+MAC_PRO	= -I /include -lglfw -L "/opt/homebrew/Cellar/glfw/3.3.8/lib/"
 
 HEAD_DIR 	=   ./include
 HEADER      =   $(HEAD_DIR)/fdf.h
@@ -100,6 +99,7 @@ clean	:
 	@make clean -C $(LIBFT_DIR)
 #	@rm -f $(OBJS)
 #	@rm -rf $(LIB_MLX)/build
+#	@rm -rf $(LIB_MLX)/CMakeCache.txt
 	@echo "\n#-----$RMLX clean$W ❌---------------------#\n"
 	@echo "\n#-----$RFDF clean$W ❌---------------------#\n"
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 13:56:50 by rofontai          #+#    #+#             */
-/*   Updated: 2022/12/29 21:54:58 by romain           ###   ########.fr       */
+/*   Updated: 2023/04/21 21:23:17 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_read(int fd, char *save)
 			return (0);
 		}
 		save = join(save, buff);
-		ft_bzero(buff, BUFFER_SIZE);
+		f_bzero(buff, BUFFER_SIZE);
 	}
 	free(buff);
 	return (save);
@@ -135,3 +135,4 @@ char	*crop_save(char *save, char c)
 	save = NULL;
 	return (dest);
 }
+
