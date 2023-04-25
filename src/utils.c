@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 07:46:14 by rofontai          #+#    #+#             */
-/*   Updated: 2023/04/24 22:15:12 by romain           ###   ########.fr       */
+/*   Updated: 2023/04/25 15:57:49 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,32 @@ int f_check_fdf(char *str)
 	return (0);
 }
 
-//TODO Fonction qui extrait les lignes des maps dans une grandes arrays (open, GNL, join)
+// calculer la hauteur de la fenetre pour le malloc
+int size_height(char *arg)
+{
+	int i;
+
+	i = 0;
+	int fd = open(arg, O_RDONLY);
+	while (get_next_line(fd) != NULL)
+		i++;
+	close (fd);
+	return (i);
+}
+
+//Fonction qui extrait les lignes des maps
 char **f_extract_line(char *arg)
 {
 	char **temp;
 	int x = 0;
+	int size = size_height(arg);
 	int fd = open(arg, O_RDONLY);
-	if (fd <= 0)
+	if (fd < 0 || f_check_fdf(arg) == 0)
 	{
-		//TODO seg_fault en cas d'erreur
-		ft_printf ("\n🚨 "RED"Error :"WHT" read file\n\n");
+		ft_printf ("\n🚨 "RED"Error :"WHT" bad file\n\n");
 		return (0);
 	}
-	temp = ft_calloc(sizeof(char *), 10000); //TODO gestion de la taille du malloc en focntion de la map
+	temp = ft_calloc(sizeof(char *), size +1);
 	temp[x] = get_next_line(fd);
 	while (temp[x])
 	{
@@ -44,5 +57,4 @@ char **f_extract_line(char *arg)
 	return (temp);
 }
 
-//Fct qui split avec les \n de la grande arrays;
 //Fct qui split les espaces atoi de chaque petites arrays; et uqi les mets dans un tableau de int;
