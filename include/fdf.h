@@ -40,6 +40,7 @@
 // UTILS------------------------------------------------------------------------
 
 int f_check_fdf(char *str);
+char **f_extract_line(char *arg);
 
 
 #endif
