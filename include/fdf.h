@@ -38,11 +38,10 @@
 
 
 
-// UTILS------------------------------------------------------------------------
+// CHECK FILE------------------------------------------------------------------------
 
+void f_check_arg(int argc, char **argv);
 int f_check_fdf(char *str);
-char **f_extract_line(char *arg);
-int size_height(char *arg);
 
 
 #endif
