@@ -6,7 +6,7 @@
 #    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 10:43:15 by rofontai          #+#    #+#              #
-#    Updated: 2023/04/24 08:01:23 by rofontai         ###   ########.fr        #
+#    Updated: 2023/04/24 14:02:44 by rofontai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ Z = $(shell tput -Txterm setaf 5)
 NAME	= fdf
 
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g #-lm
+CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address #-lm
 
 SRC_DIR	= ./src
 SRC		= main.c utils.c

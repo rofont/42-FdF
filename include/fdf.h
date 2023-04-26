@@ -6,6 +6,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <stdbool.h>
+# include <stdlib.h>
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "../lib/libft/include/libft.h"
 # include "../lib/libft/include/get_next_line.h"
@@ -40,7 +41,7 @@
 // UTILS------------------------------------------------------------------------
 
 int f_check_fdf(char *str);
-
+void prerecup_data(int fd);
 
 #endif
 
