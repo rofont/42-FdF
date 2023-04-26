@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:02:32 by rofontai          #+#    #+#             */
-/*   Updated: 2023/04/26 08:52:31 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/04/26 11:32:27 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int main (int argc, char **argv)
 {
+
 	f_check_arg(argc, argv);
+	f_extract_line(argv[1]);
 	return (0);
 }

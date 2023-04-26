@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 07:46:14 by rofontai          #+#    #+#             */
-/*   Updated: 2023/04/26 09:04:37 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/04/26 10:12:47 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ void	f_check_arg(int argc, char **argv)
 		ft_printf("Need a file valid <name file>.fdf\n");
 		exit(EXIT_FAILURE);
 	}
-}
+	close (fd);
+	}

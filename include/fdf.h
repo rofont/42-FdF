@@ -36,12 +36,22 @@
 
 // STRUCTURE-------------------------------------------------------------------
 
+typedef struct s_map{
+	int y;
+	int x;
+}			t_map;
 
-
-// CHECK FILE------------------------------------------------------------------------
+// CHECK FILE------------------------------------------------------------------
 
 void f_check_arg(int argc, char **argv);
 int f_check_fdf(char *str);
+
+// CREATE_MAP------------------------------------------------------------------
+
+void f_extract_line(char *arg);
+int *f_create_map(char *line, int **tab, t_map map, int y);
+t_map f_size_map(char *file);
+void ft_print_tabint(int **tab, int colum, int line);
 
 
 #endif
