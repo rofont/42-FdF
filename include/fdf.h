@@ -41,7 +41,9 @@
 // UTILS------------------------------------------------------------------------
 
 int f_check_fdf(char *str);
-void prerecup_data(int fd);
+char **f_extract_line(char *arg);
+int size_height(char *arg);
+
 
 #endif
 

@@ -6,12 +6,13 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 07:46:14 by rofontai          #+#    #+#             */
-/*   Updated: 2023/04/24 14:26:30 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/04/26 07:59:50 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+//check si .fdf est bien a la fin du fichier
 int f_check_fdf(char *str)
 {
 	str = ft_strrchr(str, '.');
@@ -20,24 +21,40 @@ int f_check_fdf(char *str)
 	return (0);
 }
 
-void prerecup_data(int fd)
+// calculer la hauteur de la fenetre pour le malloc
+int size_height(char *arg)
 {
-	char **recup;
-	int y;
+	int i;
 
-	// y = 0;
-	// while (get_next_line(fd))
-	// 	y++;
-	recup = ft_calloc(sizeof(char *), 1000);
-	if (!recup)
-		return ;
-	y = 0;
-	recup[y] = get_next_line(fd);
-	ft_printf("hors de la while %s\n", recup[y]);
-	while (recup[y++] != NULL)
-	{
-		recup[y] = get_next_line(fd);
-		ft_printf(" dans la while %s\n", recup[y]);
-	}
-	// return (recup);
+	i = 0;
+	int fd = open(arg, O_RDONLY);
+	while (get_next_line(fd) != NULL)
+		i++;
+	close (fd);
+	return (i);
 }
+
+//Fonction qui extrait les lignes des maps
+char **f_extract_line(char *arg)
+{
+	char **temp;
+	int x = 0;
+	int size = size_height(arg);
+	int fd = open(arg, O_RDONLY);
+	if (fd < 0 || f_check_fdf(arg) == 0)
+	{
+		ft_printf ("\n🚨 "RED"Error :"WHT" bad file\n\n");
+		return (0);
+	}
+	temp = ft_calloc(sizeof(char *), size +1);
+	temp[x] = get_next_line(fd);
+	while (temp[x])
+	{
+		x++;
+		temp[x] =get_next_line(fd);
+	}
+	close (fd);
+	return (temp);
+}
+
+//Fct qui split les espaces atoi de chaque petites arrays; et uqi les mets dans un tableau de int;
