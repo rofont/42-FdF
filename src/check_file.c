@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 07:46:14 by rofontai          #+#    #+#             */
-/*   Updated: 2023/04/26 10:12:47 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/04/27 09:44:36 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	f_check_fdf(char *str)
 	return (0);
 }
 
-//Check_file
-void	f_check_arg(int argc, char **argv)
+//Check file
+void f_check_arg(int argc, char **argv)
 {
 	int	fd;
 

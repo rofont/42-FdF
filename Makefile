@@ -6,7 +6,7 @@
 #    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 10:43:15 by rofontai          #+#    #+#              #
-#    Updated: 2023/04/26 14:41:21 by rofontai         ###   ########.fr        #
+#    Updated: 2023/04/27 08:14:09 by rofontai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address #-lm
 
 SRC_DIR	= ./src
-SRC		= main.c check_file.c create_map.c
+SRC		= main.c check_file.c create_map.c utils.c
 #		main_test2.c
 
 OBJ_DIR	= ./obj
