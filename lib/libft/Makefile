@@ -6,7 +6,7 @@
 #    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:49:17 by rofontai          #+#    #+#              #
-#    Updated: 2023/04/21 09:07:37 by rofontai         ###   ########.fr        #
+#    Updated: 2023/04/28 11:21:49 by rofontai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRCS        = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 	ft_putnbr_fd.c ft_putendl_fd.c ft_itoa.c ft_split.c ft_strmapi.c ft_striteri.c \
 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
-	get_next_line.c get_next_line_utils.c \
+	get_next_line.c get_next_line_utils.c ft_free_tab_int.c ft_free_tab_char.c \
 
 OBJS_DIR    = ./obj
 OBJS        = ${SRCS:%.c=${OBJS_DIR}/%.o}

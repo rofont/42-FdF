@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
+#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 10:43:15 by rofontai          #+#    #+#              #
-#    Updated: 2023/04/27 20:52:43 by romain           ###   ########.fr        #
+#    Updated: 2023/04/28 13:06:13 by rofontai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,8 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address #-lm
 
 SRC_DIR	= ./src
-SRC		= main.c check_file.c create_map.c utils.c
-#SRC		= main_test.c
+SRC		= main.c utils.c parse.c create_map.c
+#SRC		= main_test2.c
 
 OBJ_DIR	= ./obj
 OBJ		= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

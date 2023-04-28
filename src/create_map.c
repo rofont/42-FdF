@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 09:06:36 by rofontai          #+#    #+#             */
-/*   Updated: 2023/04/27 20:41:05 by romain           ###   ########.fr       */
+/*   Created: 2023/04/28 10:58:55 by rofontai          #+#    #+#             */
+/*   Updated: 2023/04/28 13:07:49 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,70 +31,76 @@ static int	count_collum(char *str, char c)
 	return (nbw);
 }
 
-// taille de la map
-t_map *f_size_map(char *file)
+void	f_size_map(t_fdf *fdf, char *file)
 {
-	int fd;
 	char *line;
-	t_map *map;
+	int flag;
+	int fd;
 
-	map = f_init_fdf();
-	fd = open (file, O_RDONLY);
+	fd =open(file, O_RDONLY);
+	flag = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		map->width = count_collum(line, 32);
+		if (flag == 0)
+			fdf->width = count_collum(line, 32);
 		free(line);
-		map->height++;
+		fdf->height++;
+		flag = 1;
 	}
-	close (fd);
-	return (map);
+	close(fd);
 }
 
-// creation de map.
-int *f_extract_line(char *line, t_map *map, int y)
+void	f_alloc_map(t_fdf *fdf)
 {
-	char **lines;
-	int x;
+	int i;
+
+	i = 0;
+	fdf->map = ft_calloc(sizeof(int *), fdf->height);
+	if (!fdf->map)
+		return ;
+	while (i < fdf->height)
+	{
+		fdf->map[i++] = ft_calloc(sizeof(int), fdf->width);
+		if (!fdf->map)
+			return ;
+	}
+}
+
+void	f_extract_point(char *line, t_fdf *fdf)
+{
+	char		**lines;
+	int			x;
+	static int	y = 0;
 
 	x = 0;
-	map->tab[y] = ft_calloc(sizeof(int), map->width);
 	lines = ft_split(line, 32);
-	while (x < map->width)
+	while (x < fdf->width)
 	{
-		map->tab[y][x] = ft_atoi(lines[x]);
-
+		fdf->map[y][x] = ft_atoi(lines[x]);
 		x++;
 	}
-	f_free_tab(lines);
-	return (map->tab[y]);
+	y++;
+	ft_free_tab_char(lines);
 }
 
-// lecture du fichier.
-t_map *f_create_map(char *arg, t_map *map)
+void	f_create_map(t_fdf *fdf, char *arg)
 {
 	char *line;
 	int fd;
-	int y;
 
-	y = 0;
-	map = f_size_map(arg);
-	map->tab = ft_calloc(sizeof(int *), map->height + 1);
+	f_size_map(fdf, arg);
 	fd = open(arg, O_RDONLY);
+	f_alloc_map(fdf);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		f_extract_line(line, map, y);
-		y++;
+		f_extract_point(line, fdf);
 		free(line);
 	}
-	// f_print_tabint(map->tab, map->height, map->width); //TODO pour les tests
-	// f_free_tabint(map->tab, map->height); //TODO pour les tests
-	// free(map); //TODO pour les tests
 	close (fd);
-	return (map);
 }

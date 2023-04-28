@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_file.c                                       :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/24 07:46:14 by rofontai          #+#    #+#             */
-/*   Updated: 2023/04/27 17:11:01 by romain           ###   ########.fr       */
+/*   Created: 2023/04/28 10:44:42 by rofontai          #+#    #+#             */
+/*   Updated: 2023/04/28 11:00:59 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,14 @@ void f_check_arg(int argc, char **argv)
 	int	fd;
 
 	if (argc != 2)
+		f_error("Need an argument valid <name file>.fdf");
+	else
 	{
-		ft_printf ("🚨 "RED"Error :"WHT"\n");
-		ft_printf("Need an argument valid <name file>.fdf\n");
-		exit(EXIT_FAILURE);
+		fd = open(argv[1], O_RDONLY);
+		if (fd < 0 || f_check_fdf(argv[1]) == 0)
+		{
+			close (fd);
+			f_error("Need a valid file <name file>.fdf");
+		}
 	}
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0 || f_check_fdf(argv[1]) == 0)
-	{
-		ft_printf ("🚨 "RED"Error :"WHT"\n");
-		ft_printf("Need a file valid <name file>.fdf\n");
-		exit(EXIT_FAILURE);
-	}
-
-	close (fd);
-	}
+}

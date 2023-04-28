@@ -3,45 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 08:07:03 by rofontai          #+#    #+#             */
-/*   Updated: 2023/04/27 20:36:02 by romain           ###   ########.fr       */
+/*   Created: 2023/04/28 10:05:40 by rofontai          #+#    #+#             */
+/*   Updated: 2023/04/28 13:13:50 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int	**f_free_tabint(int **tab, int size)
+t_fdf	*f_init_fdf(void)
 {
-	int	i;
+	static t_fdf	*new;
 
-	i = 0;
-	while (i < size)
+	if (!new)
 	{
-		free(tab[i]);
-		i++;
+		new = ft_calloc(sizeof(t_fdf), 1);
+		if (!new)
+			return (0);
+		new->x = 0;
+		new->y = 0;
+		new->height = 0;
+		new->width = 0;
+		new->map = NULL;
 	}
-	free(tab);
-	return (0);
+	return (new);
 }
 
-char	**f_free_tab(char **tab)
+void	f_error(char *msg)
 {
-	size_t	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	return (0);
+	ft_printf("🚨 "RED" Error : "WHT" %s\n", msg);
+	exit (EXIT_FAILURE);
 }
 
+void	f_cleanup(t_fdf *fdf, char *msg)
+{
+	if (fdf->map)
+		ft_free_tab_int(fdf->map, fdf->height);
+	if (fdf)
+		free(fdf);
+	if (msg)
+		f_error(msg);
+	if (!msg)
+		exit(EXIT_SUCCESS);
+}
 
-// TODO Pour les tests
+//TODO A enlever
 void f_print_tabint(int **tab, int colum, int line)
 {
 	int x;
@@ -62,15 +69,12 @@ void f_print_tabint(int **tab, int colum, int line)
 	}
 }
 
-t_map	*f_init_fdf(void)
+//TODO A enlever
+void f_print_struct(t_fdf *fdf)
 {
-	t_map *new;
-
-	new = ft_calloc(sizeof(t_map), 1);
-	if (!new)
-		return (0);
-	new->height = 0;
-	new->width = 0;
-	new->tab = NULL;
-	return (new);
+	ft_printf("x = %d\n", fdf->x);
+	ft_printf("y = %d\n", fdf->y);
+	ft_printf("height = %d\n", fdf->height);
+	ft_printf("width = %d\n", fdf->width);
+	f_print_tabint(fdf->map, fdf->height, fdf->width);
 }
