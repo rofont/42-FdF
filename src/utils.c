@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:07:03 by rofontai          #+#    #+#             */
-/*   Updated: 2023/04/27 10:46:36 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/04/27 20:36:02 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ char	**f_free_tab(char **tab)
 	return (0);
 }
 
+
+// TODO Pour les tests
 void f_print_tabint(int **tab, int colum, int line)
 {
 	int x;

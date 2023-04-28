@@ -44,12 +44,12 @@ typedef struct s_map{
 
 // CHECK FILE------------------------------------------------------------------
 
-void	f_check_arg(int argc, char **argv);
+void 	f_check_arg(int argc, char **argv);
 int		f_check_fdf(char *str);
 
 // CREATE_MAP------------------------------------------------------------------
 
-void	f_create_map(char *arg, t_map *map);
+t_map	*f_create_map(char *arg, t_map *map);
 int 	*f_extract_line(char *line, t_map *map, int y);
 t_map	*f_size_map(char *file);
 

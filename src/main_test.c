@@ -27,7 +27,7 @@ static void ft_error(void)
 static void ft_hook(void* param)
 {
 	const mlx_t* mlx = param;
-	
+
 	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
 }
 
@@ -43,8 +43,8 @@ int32_t	main(void)
 	/* Do stuff */
 
 	// Create and display the image.
-	mlx_image_t* img = mlx_new_image(mlx, 256, 256);
-	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
+	mlx_image_t* img = mlx_new_image(mlx, 50, 50);
+	if (!img || (mlx_image_to_window(mlx, img, 1, 1) < 0))
 		ft_error();
 
 	// Even after the image is being displayed, we can still modify the buffer.

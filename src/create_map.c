@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 09:06:36 by rofontai          #+#    #+#             */
-/*   Updated: 2023/04/27 10:48:51 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/04/27 20:41:05 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int *f_extract_line(char *line, t_map *map, int y)
 }
 
 // lecture du fichier.
-void f_create_map(char *arg, t_map *map)
+t_map *f_create_map(char *arg, t_map *map)
 {
 	char *line;
 	int fd;
@@ -92,8 +92,9 @@ void f_create_map(char *arg, t_map *map)
 		y++;
 		free(line);
 	}
-	f_print_tabint(map->tab, map->height, map->width);
-	f_free_tabint(map->tab, map->height);
-	free(map);
+	// f_print_tabint(map->tab, map->height, map->width); //TODO pour les tests
+	// f_free_tabint(map->tab, map->height); //TODO pour les tests
+	// free(map); //TODO pour les tests
 	close (fd);
+	return (map);
 }
