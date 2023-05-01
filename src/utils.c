@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:05:40 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/01 08:12:21 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/01 13:07:18 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void f_print_tabint(int **tab, int colum, int line)
 		while (x < line)
 		{
 			ft_printf("%d", tab[y][x]);
+			ft_printf("  ");
 			x++;
 		}
 		ft_printf("\n");

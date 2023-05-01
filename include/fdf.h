@@ -46,8 +46,8 @@ typedef struct s_fdf
 
 }			t_fdf;
 
-# define WIDTH 1080
-# define HEIGHT 1080
+# define WIDTH 540
+# define HEIGHT 540
 
 
 // UTILS-----------------------------------------------------------------------
@@ -73,5 +73,7 @@ void	f_alloc_map(t_fdf *fdf);
 // INIT_MLX--------------------------------------------------------------------
 
 void f_init_mlx(t_fdf *fdf);
+int get_rgba(int r, int g, int b, int a);
+void draw_point(mlx_image_t *img, t_fdf *fdf);
 
 #endif
