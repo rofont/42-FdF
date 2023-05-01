@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:58:55 by rofontai          #+#    #+#             */
-/*   Updated: 2023/04/28 13:07:49 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/01 08:08:11 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	f_size_map(t_fdf *fdf, char *file)
 		flag = 1;
 	}
 	close(fd);
+	if (fdf->height == 0 && fdf->width == 0)
+		f_cleanup(fdf, "File is empty");
 }
 
 void	f_alloc_map(t_fdf *fdf)

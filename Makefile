@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
+#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 10:43:15 by rofontai          #+#    #+#              #
-#    Updated: 2023/04/28 13:06:13 by rofontai         ###   ########.fr        #
+#    Updated: 2023/05/01 08:24:54 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address #-lm
 
 SRC_DIR	= ./src
-SRC		= main.c utils.c parse.c create_map.c
+SRC		= main.c utils.c parse.c create_map.c init_mlx.c
 #SRC		= main_test2.c
 
 OBJ_DIR	= ./obj

@@ -46,18 +46,22 @@ typedef struct s_fdf
 
 }			t_fdf;
 
+# define WIDTH 1080
+# define HEIGHT 1080
+
+
 // UTILS-----------------------------------------------------------------------
 
 t_fdf	*f_init_fdf(void);
 void	f_cleanup(t_fdf *fdf, char *msg);
 void	f_error(char *msg);
-void f_print_tabint(int **tab, int colum, int line);
-void f_print_struct(t_fdf *fdf);
+void	f_print_tabint(int **tab, int colum, int line);
+void	f_print_struct(t_fdf *fdf);
 
 // PARSE-----------------------------------------------------------------------
 
-int	f_check_fdf(char *str);
-void f_check_arg(int argc, char **argv);
+int		f_check_fdf(char *str);
+void	f_check_arg(int argc, char **argv);
 
 // CREATE_MAP------------------------------------------------------------------
 
@@ -65,5 +69,9 @@ void	f_size_map(t_fdf *fdf, char *file);
 void	f_extract_point(char *line, t_fdf *fdf);
 void	f_create_map(t_fdf *fdf, char *arg);
 void	f_alloc_map(t_fdf *fdf);
+
+// INIT_MLX--------------------------------------------------------------------
+
+void f_init_mlx(t_fdf *fdf);
 
 #endif
