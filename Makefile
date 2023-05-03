@@ -6,7 +6,7 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 10:43:15 by rofontai          #+#    #+#              #
-#    Updated: 2023/05/01 10:50:40 by romain           ###   ########.fr        #
+#    Updated: 2023/05/03 14:07:08 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address #-lm
 
 SRC_DIR	= ./src
-SRC		= main.c utils.c parse.c create_map.c init_mlx.c
+SRC		= main.c utils.c parse.c create_map.c init_mlx.c draw.c
 #SRC		= maintest.c
 
 OBJ_DIR	= ./obj

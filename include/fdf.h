@@ -40,14 +40,15 @@ typedef struct s_fdf
 {
 	int	x;
 	int	y;
+	int scale;
 	int	height;
 	int	width;
 	int	**map;
 
 }			t_fdf;
 
-# define WIDTH 540
-# define HEIGHT 540
+# define WIDTH 1080
+# define HEIGHT 1080
 
 
 // UTILS-----------------------------------------------------------------------
@@ -75,5 +76,10 @@ void	f_alloc_map(t_fdf *fdf);
 void f_init_mlx(t_fdf *fdf);
 int get_rgba(int r, int g, int b, int a);
 void draw_point(mlx_image_t *img, t_fdf *fdf);
+void f_draw_line(t_fdf *fdf, mlx_image_t *img);
+
+// DRAW------------------------------------------------------------------------
+
+void f_bresenham(int x, int y, int x1, int y1, mlx_image_t *img);
 
 #endif

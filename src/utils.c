@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:05:40 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/01 13:07:18 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/03 15:11:44 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_fdf	*f_init_fdf(void)
 		new->y = 0;
 		new->height = 0;
 		new->width = 0;
+		new->scale = 50;
 		new->map = NULL;
 	}
 	return (new);

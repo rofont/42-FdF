@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:01:04 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/01 08:27:33 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/03 15:08:50 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	f_create_map(fdf, argv[1]);
 	f_print_struct(fdf);
 	f_init_mlx(fdf);
-	// print les points
+
 	// print les lignes entre les points
 	// faire la vue iso
 	// et implementer les mouv
