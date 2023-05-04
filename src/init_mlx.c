@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 08:14:44 by romain            #+#    #+#             */
-/*   Updated: 2023/05/03 21:22:01 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/04 14:33:24 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void f_init_mlx(t_fdf *fdf)
 	if (!mlx)
 		f_cleanup(fdf, "error");
 	img = mlx_new_image(mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(mlx, img, WIDTH/8, HEIGHT/8);
+	mlx_image_to_window(mlx, img, 0, 0);
 	// draw_point(img, fdf);
 	f_draw_line(fdf, img);
 	mlx_loop(mlx);
@@ -43,19 +43,20 @@ void draw_point(mlx_image_t *img, t_fdf *fdf)
 
 	x = 0;
 	y = 0;
-	x1 = 0;
-	y1 = 0;
+	void f_map_scale(t_fdf *fdf);
+	x1 = 10;
+	y1 = 10;
 	while (y < fdf->width)
 	{
 		while (x < fdf->height)
 		{
 			mlx_put_pixel(img, y1, x1, 0xF0F0F0);
-			x1 += fdf->scale;
+			x1 += 10;
 			x++;
 		}
-		x1 = 0;
+		x1 = 10;
 		x = 0;
-		y1 += fdf->scale;
+		y1 += 10;
 		y++;
 	}
 }
@@ -71,24 +72,21 @@ void f_draw_line(t_fdf *fdf, mlx_image_t *img)
 	color = get_rgba(255, 255, 0, 100);
 	x = 0;
 	y =	0;
-	x1 = 0;
-	y1 = 0;
+	f_map_scale(fdf);
+	x1 = (WIDTH/2) - ((fdf->width*fdf->scale)/2);
+	y1 = (HEIGHT/2) - ((fdf->height*fdf->scale)/2);
 	while (y < fdf->height)
 	{
 		while (x < fdf->width)
 		{
 			if (x != fdf->width -1)
 			{
-				if (x1 + fdf->scale > WIDTH)
-					break;
 				if (fdf->map[y][x] > 0)
 					color = 0xF0F0F0;
 				f_bresenham(x1, y1, (x1 + fdf->scale), y1, img, color);
 			}
 			if (y != fdf->height -1)
 			{
-				if (y1 + fdf->scale > WIDTH)
-					break;
 				if (fdf->map[y][x] > 0)
 					color = 0xF0F0F0;
 				f_bresenham(x1, y1, x1, (y1 + fdf->scale), img, color);
@@ -98,8 +96,21 @@ void f_draw_line(t_fdf *fdf, mlx_image_t *img)
 			x++;
 		}
 		x = 0;
-		x1 = 0;
+		x1 = (WIDTH/2) - ((fdf->width*fdf->scale)/2);
 		y1 += fdf->scale;
 		y ++;
 	}
+}
+
+void f_map_scale(t_fdf *fdf)
+{
+	int i;
+	i = 0;
+
+	while (i < HEIGHT)
+	{
+		i += fdf->height;
+		fdf->scale++;
+	}
+	fdf->scale /= 2;
 }

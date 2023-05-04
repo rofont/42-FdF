@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:53:54 by romain            #+#    #+#             */
-/*   Updated: 2023/05/03 20:44:37 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/04 14:14:35 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void f_bresenham(int x, int y, int x1, int y1, mlx_image_t *img, int color)
 	{
 		while (i <= Dx)
 		{
-			mlx_put_pixel(img, x, y, color);
+			if (x < WIDTH && y < HEIGHT)
+				mlx_put_pixel(img, x, y, color);
 			i++;
 			x += xi;
 			ex -= dy;
@@ -47,7 +48,8 @@ void f_bresenham(int x, int y, int x1, int y1, mlx_image_t *img, int color)
 	{
 		while (i <= Dy)
 		{
-			mlx_put_pixel(img, x, y, color);
+			if (x < WIDTH && y < HEIGHT)
+				mlx_put_pixel(img, x, y, color);
 			i++;
 			y += yi;
 			ey -= dx;
@@ -58,4 +60,27 @@ void f_bresenham(int x, int y, int x1, int y1, mlx_image_t *img, int color)
 			}
 		}
 	}
+}
+
+t_point *calc_isometric(t_point *pts, int max_pts)
+{
+    float   x;
+    float   y;
+    float   z;
+    const double angle = 30 * M_PI / 180.0;
+    int num_pts;
+
+    num_pts = 0;
+    while (num_pts < max_pts)
+    {
+        x = pts[num_pts].x;
+        y = pts[num_pts].y;
+        z = pts[num_pts].z;
+        // printf("x: %f y: %f z: %f\n", x, y, z);
+        pts[num_pts].x = (x - y) * cos(angle);
+        pts[num_pts].y = (x + y) * sin(angle) - z;
+        // printf("x_iso %f\ty_iso %f\n\n", pts[num_pts].x, pts[num_pts].y);
+        num_pts++;
+    }
+    return (pts);
 }

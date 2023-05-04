@@ -36,14 +36,25 @@
 
 // STRUCTURE-------------------------------------------------------------------
 
+
+typedef struct s_point
+{
+	int x;
+	int y;
+	int z;
+	int color;
+}		t_point;
+
 typedef struct s_fdf
 {
-	int	x;
-	int	y;
-	int scale;
-	int	height;
-	int	width;
-	int	**map;
+	int			x;
+	int			y;
+	int			scale;
+	int			height;
+	int			width;
+	int			**map;
+	mlx_image_t	*img;
+	mlx_t		*mlx;
 
 }			t_fdf;
 
@@ -58,6 +69,7 @@ void	f_cleanup(t_fdf *fdf, char *msg);
 void	f_error(char *msg);
 void	f_print_tabint(int **tab, int colum, int line);
 void	f_print_struct(t_fdf *fdf);
+t_point	*f_init_point(void);
 
 // PARSE-----------------------------------------------------------------------
 
@@ -77,9 +89,11 @@ void f_init_mlx(t_fdf *fdf);
 int get_rgba(int r, int g, int b, int a);
 void draw_point(mlx_image_t *img, t_fdf *fdf);
 void f_draw_line(t_fdf *fdf, mlx_image_t *img);
+void f_map_scale(t_fdf *fdf);
 
 // DRAW------------------------------------------------------------------------
 
 void f_bresenham(int x, int y, int x1, int y1, mlx_image_t *img, int color);
+t_point *calc_isometric(t_point *pts, int max_pts);
 
 #endif

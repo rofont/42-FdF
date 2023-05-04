@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:05:40 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/03 15:11:44 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/04 13:58:08 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,24 @@ t_fdf	*f_init_fdf(void)
 		new->y = 0;
 		new->height = 0;
 		new->width = 0;
-		new->scale = 50;
+		new->scale = 0;
 		new->map = NULL;
 	}
+	return (new);
+}
+
+t_point *f_init_point(void)
+{
+	t_point *new;
+
+	new = ft_calloc(sizeof(t_point), 1);
+	if (!new)
+		return (0);
+	new->x = 0;
+	new->y = 0;
+	new->z = 0;
+	new->color = get_rgba(240, 240, 240, 1);
+
 	return (new);
 }
 
@@ -76,6 +91,7 @@ void f_print_struct(t_fdf *fdf)
 {
 	ft_printf("x = %d\n", fdf->x);
 	ft_printf("y = %d\n", fdf->y);
+	ft_printf("scale = %d\n", fdf->scale);
 	ft_printf("height = %d\n", fdf->height);
 	ft_printf("width = %d\n", fdf->width);
 	f_print_tabint(fdf->map, fdf->height, fdf->width);
