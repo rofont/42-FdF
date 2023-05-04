@@ -80,6 +80,6 @@ void f_draw_line(t_fdf *fdf, mlx_image_t *img);
 
 // DRAW------------------------------------------------------------------------
 
-void f_bresenham(int x, int y, int x1, int y1, mlx_image_t *img);
+void f_bresenham(int x, int y, int x1, int y1, mlx_image_t *img, int color);
 
 #endif

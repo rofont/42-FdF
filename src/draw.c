@@ -6,13 +6,13 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:53:54 by romain            #+#    #+#             */
-/*   Updated: 2023/05/03 15:34:50 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/03 20:44:37 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void f_bresenham(int x, int y, int x1, int y1, mlx_image_t *img)
+void f_bresenham(int x, int y, int x1, int y1, mlx_image_t *img, int color)
 {
 	int ex = abs(x1 - x);
 	int ey = abs(y1 - y);
@@ -32,7 +32,7 @@ void f_bresenham(int x, int y, int x1, int y1, mlx_image_t *img)
 	{
 		while (i <= Dx)
 		{
-			mlx_put_pixel(img, x, y, 0xF0F0F0);
+			mlx_put_pixel(img, x, y, color);
 			i++;
 			x += xi;
 			ex -= dy;
@@ -47,7 +47,7 @@ void f_bresenham(int x, int y, int x1, int y1, mlx_image_t *img)
 	{
 		while (i <= Dy)
 		{
-			mlx_put_pixel(img, x, y, 0xF0F0F0);
+			mlx_put_pixel(img, x, y, color);
 			i++;
 			y += yi;
 			ey -= dx;
