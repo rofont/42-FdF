@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:05:40 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/04 13:58:08 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/11 09:55:55 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_fdf	*f_init_fdf(void)
 		new->height = 0;
 		new->width = 0;
 		new->scale = 0;
+		new->bres = ft_calloc(sizeof(t_bres), 1);
 		new->map = NULL;
 	}
 	return (new);
@@ -64,35 +65,7 @@ void	f_cleanup(t_fdf *fdf, char *msg)
 		exit(EXIT_SUCCESS);
 }
 
-//TODO A enlever
-void f_print_tabint(int **tab, int colum, int line)
+int get_rgba(int r, int g, int b, int a)
 {
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	while (y < colum)
-	{
-		while (x < line)
-		{
-			ft_printf("%d", tab[y][x]);
-			ft_printf("  ");
-			x++;
-		}
-		ft_printf("\n");
-		x= 0;
-		y++;
-	}
-}
-
-//TODO A enlever
-void f_print_struct(t_fdf *fdf)
-{
-	ft_printf("x = %d\n", fdf->x);
-	ft_printf("y = %d\n", fdf->y);
-	ft_printf("scale = %d\n", fdf->scale);
-	ft_printf("height = %d\n", fdf->height);
-	ft_printf("width = %d\n", fdf->width);
-	f_print_tabint(fdf->map, fdf->height, fdf->width);
+    return (r << 24 | g << 16 | b << 8 | a);
 }

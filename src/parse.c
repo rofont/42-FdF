@@ -6,13 +6,12 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:44:42 by rofontai          #+#    #+#             */
-/*   Updated: 2023/04/28 11:00:59 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/11 08:03:18 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-//check .fdf
 int	f_check_fdf(char *str)
 {
 	str = ft_strrchr(str, '.');
@@ -21,8 +20,7 @@ int	f_check_fdf(char *str)
 	return (0);
 }
 
-//Check file
-void f_check_arg(int argc, char **argv)
+void	f_check_arg(int argc, char **argv)
 {
 	int	fd;
 

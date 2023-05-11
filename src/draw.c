@@ -6,60 +6,26 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:53:54 by romain            #+#    #+#             */
-/*   Updated: 2023/05/04 14:14:35 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:25:12 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void f_bresenham(int x, int y, int x1, int y1, mlx_image_t *img, int color)
+void f_bresenham(t_fdf *fdf, int color)
 {
-	int ex = abs(x1 - x);
-	int ey = abs(y1 - y);
-	int dx = 2*ex;
-	int dy = 2*ey;
-	int Dx = ex;
-	int Dy = ey;
-	int i = 0;
-	int xi = 1;
-	int yi = 1;
+	int i;
 
-	if (x > x1)
-		xi = -1;
-	if (y > y1)
-		yi = -1;
-	if (Dx >= Dy)
-	{
-		while (i <= Dx)
-		{
-			if (x < WIDTH && y < HEIGHT)
-				mlx_put_pixel(img, x, y, color);
-			i++;
-			x += xi;
-			ex -= dy;
-			if (ex < 0)
-			{
-				y += yi;
-				ex+= dx;
-			}
-		}
-	}
-	if (Dx < Dy)
-	{
-		while (i <= Dy)
-		{
-			if (x < WIDTH && y < HEIGHT)
-				mlx_put_pixel(img, x, y, color);
-			i++;
-			y += yi;
-			ey -= dx;
-			if (ey < 0)
-			{
-				x += xi;
-				ey+= dy;
-			}
-		}
-	}
+	i = 0;
+	f_modif_bres(fdf->bres);
+	if (fdf->bres->x1 > fdf->bres->x2)
+		fdf->bres->xi = -1;
+	if (fdf->bres->y1 > fdf->bres->y2)
+		fdf->bres->yi = -1;
+	if (fdf->bres->Dx >= fdf->bres->Dy)
+		f_draw_x(fdf, i, color);
+	if (fdf->bres->Dx < fdf->bres->Dy)
+		f_draw_y(fdf, i, color);
 }
 
 t_point *calc_isometric(t_point *pts, int max_pts)

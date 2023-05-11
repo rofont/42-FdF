@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:58:55 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/01 08:08:11 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/11 08:04:02 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static int	count_collum(char *str, char c)
+int	count_collum(char *str, char c)
 {
 	int	i;
 	int	nbw;
@@ -33,11 +33,11 @@ static int	count_collum(char *str, char c)
 
 void	f_size_map(t_fdf *fdf, char *file)
 {
-	char *line;
-	int flag;
-	int fd;
+	char	*line;
+	int		flag;
+	int		fd;
 
-	fd =open(file, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	flag = 0;
 	while (1)
 	{
@@ -57,7 +57,7 @@ void	f_size_map(t_fdf *fdf, char *file)
 
 void	f_alloc_map(t_fdf *fdf)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	fdf->map = ft_calloc(sizeof(int *), fdf->height);
@@ -71,7 +71,7 @@ void	f_alloc_map(t_fdf *fdf)
 	}
 }
 
-void	f_extract_point(char *line, t_fdf *fdf)
+void	f_extract_point(t_fdf *fdf, char *line)
 {
 	char		**lines;
 	int			x;
@@ -90,8 +90,8 @@ void	f_extract_point(char *line, t_fdf *fdf)
 
 void	f_create_map(t_fdf *fdf, char *arg)
 {
-	char *line;
-	int fd;
+	char	*line;
+	int		fd;
 
 	f_size_map(fdf, arg);
 	fd = open(arg, O_RDONLY);
@@ -101,7 +101,7 @@ void	f_create_map(t_fdf *fdf, char *arg)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		f_extract_point(line, fdf);
+		f_extract_point(fdf, line);
 		free(line);
 	}
 	close (fd);
