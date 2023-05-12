@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:05:40 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/11 09:55:55 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/12 09:43:11 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_fdf	*f_init_fdf(void)
 			return (0);
 		new->x = 0;
 		new->y = 0;
+		new->z = 0;
 		new->height = 0;
 		new->width = 0;
 		new->scale = 0;
@@ -42,7 +43,7 @@ t_point *f_init_point(void)
 	new->x = 0;
 	new->y = 0;
 	new->z = 0;
-	new->color = get_rgba(240, 240, 240, 1);
+	// new->color = get_rgba(240, 240, 240, 1);
 
 	return (new);
 }

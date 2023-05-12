@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 08:14:44 by romain            #+#    #+#             */
-/*   Updated: 2023/05/11 11:58:01 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:24:40 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void f_init_mlx(t_fdf *fdf)
 		f_cleanup(fdf, "error");
 	fdf->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(fdf->mlx, fdf->img, 0, 0);
-	draw_point(fdf);
+	// draw_point(fdf);
 	f_draw_line(fdf);
 	mlx_loop(fdf->mlx);
 	mlx_terminate(fdf->mlx);
@@ -54,95 +54,59 @@ void draw_point(t_fdf *fdf)
 
 void f_draw_line(t_fdf *fdf)
 {
-	int x;
-	// int y;
-	int color;
-
-	x = 0;
-	// y = 0;
-	color = get_rgba(255, 255, 255, 100);
-	fdf->scale = 50;
-	fdf->bres->x1 = fdf->scale;
-	while (x < fdf->width - 1)
+	while (fdf->y < fdf->height)
 	{
-		f_draw_line_x(fdf);
-		// f_draw_line_y(fdf);
-		// fdf->bres->x1 += fdf->scale;
-		x++;
+		while (fdf->x < fdf->width)
+		{
+			if (fdf->x != fdf->width -1)
+				f_draw_line_x(fdf);
+			if (fdf->y != fdf->height -1)
+				f_draw_line_y(fdf);
+			fdf->x++;
+		}
+		fdf->x = 0;
+		fdf->y++;
+
 	}
 }
 
-
-
 void f_draw_line_x(t_fdf *fdf)
 {
-	fdf->bres->x2 = fdf->scale + fdf->bres->x1;
-	fdf->bres->y1 = fdf->scale;
-	fdf->bres->y2 = fdf->scale;
+	f_init_line_x(fdf);
+	f_app_scale(fdf);
 	f_bresenham(fdf, get_rgba(255, 0, 0, 100));
 }
 
 void f_draw_line_y(t_fdf *fdf)
 {
-	fdf->bres->x1 = fdf->scale;
-	fdf->bres->x2 = fdf->scale;
-	fdf->bres->y1 = fdf->scale;
-	fdf->bres->y2 = fdf->bres->y1 + fdf->scale;
+	f_init_line_y(fdf);
+	f_app_scale(fdf);
 	f_bresenham(fdf, get_rgba(255, 255, 255, 100));
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void f_map_scale(t_fdf *fdf) //TODO revoir
+void f_init_line_x(t_fdf *fdf)
 {
-	int i;
-	i = 0;
-
-	while (i < HEIGHT)
-	{
-		i += fdf->height;
-		fdf->scale++;
-	}
-	if (fdf->scale < 1)
-		fdf->scale = 10;
-	else
-		fdf->scale /= 2;
+	fdf->bres->x1 = fdf->x;
+	fdf->bres->x2 = fdf->x + 1;
+	fdf->bres->y1 = fdf->y;
+	fdf->bres->y2 = fdf->y;
 }
+
+void f_init_line_y(t_fdf *fdf)
+{
+	fdf->bres->x1 = fdf->x;
+	fdf->bres->x2 = fdf->x;
+	fdf->bres->y1 = fdf->y;
+	fdf->bres->y2 = fdf->y + 1;
+}
+
+void f_app_scale(t_fdf *fdf)
+{
+
+	fdf->scale = 40;
+	fdf->bres->x1 *= fdf->scale;
+	fdf->bres->x2 *= fdf->scale;
+	fdf->bres->y1 *= fdf->scale;
+	fdf->bres->y2 *= fdf->scale;
+}
+

@@ -64,9 +64,11 @@ typedef struct s_fdf
 {
 	int			x;
 	int			y;
+	int 		z;
 	int			scale;
 	int			height;
 	int			width;
+	t_point		*point;
 	int			**map;
 	t_bres		*bres;
 	mlx_image_t	*img;
@@ -111,6 +113,9 @@ void f_draw_line(t_fdf *fdf);
 void f_map_scale(t_fdf *fdf);
 void f_draw_line_x(t_fdf *fdf);
 void f_draw_line_y(t_fdf *fdf);
+void f_init_line_x(t_fdf *fdf);
+void f_init_line_y(t_fdf *fdf);
+void f_app_scale(t_fdf *fdf);
 
 // DRAW------------------------------------------------------------------------
 
