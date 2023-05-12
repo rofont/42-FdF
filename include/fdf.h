@@ -116,6 +116,7 @@ void f_draw_line_y(t_fdf *fdf);
 void f_init_line_x(t_fdf *fdf);
 void f_init_line_y(t_fdf *fdf);
 void f_app_scale(t_fdf *fdf);
+void f_start_point(t_fdf *fdf);
 
 // DRAW------------------------------------------------------------------------
 

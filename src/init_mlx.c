@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 08:14:44 by romain            #+#    #+#             */
-/*   Updated: 2023/05/12 11:24:40 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/12 13:20:57 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,27 @@ void f_draw_line(t_fdf *fdf)
 				f_draw_line_y(fdf);
 			fdf->x++;
 		}
-		fdf->x = 0;
 		fdf->y++;
+		fdf->x = 0;
 
 	}
 }
 
 void f_draw_line_x(t_fdf *fdf)
 {
+
 	f_init_line_x(fdf);
 	f_app_scale(fdf);
+	f_start_point(fdf);
 	f_bresenham(fdf, get_rgba(255, 0, 0, 100));
 }
 
 void f_draw_line_y(t_fdf *fdf)
 {
+
 	f_init_line_y(fdf);
 	f_app_scale(fdf);
+	f_start_point(fdf);
 	f_bresenham(fdf, get_rgba(255, 255, 255, 100));
 }
 
@@ -108,5 +112,13 @@ void f_app_scale(t_fdf *fdf)
 	fdf->bres->x2 *= fdf->scale;
 	fdf->bres->y1 *= fdf->scale;
 	fdf->bres->y2 *= fdf->scale;
+}
+
+void f_start_point(t_fdf *fdf)
+{
+	fdf->bres->x1 += (WIDTH/2) - ((fdf->width*fdf->scale)/2);
+	fdf->bres->y1 += (HEIGHT/2) - ((fdf->height*fdf->scale)/2);
+	fdf->bres->x2 += (WIDTH/2) - ((fdf->width*fdf->scale)/2);
+	fdf->bres->y2 += (HEIGHT/2) - ((fdf->height*fdf->scale)/2);
 }
 
