@@ -38,18 +38,18 @@
 
 typedef struct s_bres
 {
-	int	x1;
-	int	x2;
-	int	ex;
-	int	dx;
-	int	Dx;
-	int	xi;
-	int	y1;
-	int	y2;
-	int	ey;
-	int	dy;
-	int	Dy;
-	int	yi;
+	double	x1;
+	double	x2;
+	double	ex;
+	double	dx;
+	double	Dx;
+	double	xi;
+	double	y1;
+	double	y2;
+	double	ey;
+	double	dy;
+	double	Dy;
+	double	yi;
 }		t_bres;
 
 typedef struct s_point
@@ -76,8 +76,8 @@ typedef struct s_fdf
 
 }			t_fdf;
 
-# define WIDTH 1080
-# define HEIGHT 1080
+# define WIDTH 520
+# define HEIGHT 520
 
 // PARSE-----------------------------------------------------------------------
 

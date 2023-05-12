@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:16:27 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/12 13:22:10 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:38:30 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void f_modif_bres(t_bres *new)
 {
-		new->ex = abs(new->x2 - new->x1);
-		new->ey = abs(new->y2 - new->y1);
+		new->ex = fabs(new->x2 - new->x1);
+		new->ey = fabs(new->y2 - new->y1);
 		new->dx = 2*new->ex;
 		new->dy = 2*new->ey;
 		new->Dx = new->ex;
