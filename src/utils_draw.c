@@ -3,56 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   utils_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:16:27 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/12 16:38:30 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/15 13:28:34 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void f_modif_bres(t_bres *new)
+void f_modif_bres(t_fdf *fdf)
 {
-		new->ex = fabs(new->x2 - new->x1);
-		new->ey = fabs(new->y2 - new->y1);
-		new->dx = 2*new->ex;
-		new->dy = 2*new->ey;
-		new->Dx = new->ex;
-		new->Dy = new->ey;
-		new->xi = 1;
-		new->yi = 1;
+		fdf->bres->ex = fabs(fdf->points->p_x2 - fdf->points->p_x1);
+		fdf->bres->ey = fabs(fdf->points->p_y2 - fdf->points->p_y1);
+		fdf->bres->dx = 2*fdf->bres->ex;
+		fdf->bres->dy = 2*fdf->bres->ey;
+		fdf->bres->Dx = fdf->bres->ex;
+		fdf->bres->Dy = fdf->bres->ey;
+		fdf->bres->xi = 1;
+		fdf->bres->yi = 1;
 }
 
-void f_draw_x(t_fdf *fdf, int i, int color)
+void f_draw_x(t_fdf *fdf, int color)
 {
+	int i;
+
+	i = 0;
 	while (i <= fdf->bres->Dx)
 	{
-		if (fdf->bres->x1 < WIDTH && fdf->bres->y1 < HEIGHT)
-			mlx_put_pixel(fdf->img, fdf->bres->x1, fdf->bres->y1, color);
+		if (fdf->points->p_x1 > 0 && fdf->points->p_y1 > 0
+			&& fdf->points->p_x1 < WIDTH && fdf->points->p_y1 < HEIGHT)
+			mlx_put_pixel(fdf->img, fdf->points->p_x1, fdf->points->p_y1, color);
 		i++;
-		fdf->bres->x1 += fdf->bres->xi;
+		fdf->points->p_x1 += fdf->bres->xi;
 		fdf->bres->ex -= fdf->bres->dy;
 		if (fdf->bres->ex < 0)
 		{
-			fdf->bres->y1 += fdf->bres->yi;
+			fdf->points->p_y1 += fdf->bres->yi;
 			fdf->bres->ex+= fdf->bres->dx;
 		}
 	}
 }
 
-void f_draw_y(t_fdf *fdf, int i, int color)
+void f_draw_y(t_fdf *fdf, int color)
 {
+	int i;
+
+	i = 0;
 	while (i <= fdf->bres->Dy)
 	{
-		if (fdf->bres->x1 < WIDTH && fdf->bres->y1 < HEIGHT)
-			mlx_put_pixel(fdf->img, fdf->bres->x1, fdf->bres->y1, color);
+		if (fdf->points->p_x1 > 0 && fdf->points->p_y1 > 0
+			&& fdf->points->p_x1 < WIDTH && fdf->points->p_y1 < HEIGHT)
+			mlx_put_pixel(fdf->img, fdf->points->p_x1, fdf->points->p_y1, color);
 		i++;
-		fdf->bres->y1 += fdf->bres->yi;
+		fdf->points->p_y1 += fdf->bres->yi;
 		fdf->bres->ey -= fdf->bres->dx;
 		if (fdf->bres->ey < 0)
 		{
-			fdf->bres->x1 += fdf->bres->xi;
+			fdf->points->p_x1 += fdf->bres->xi;
 			fdf->bres->ey+= fdf->bres->dy;
 		}
 	}

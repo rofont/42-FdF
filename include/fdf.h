@@ -36,39 +36,44 @@
 
 // STRUCTURE-------------------------------------------------------------------
 
-typedef struct s_bres
+typedef struct s_point
 {
 	double	x1;
 	double	x2;
+	double	y1;
+	double	y2;
+	double	z1;
+	double	z2;
+	double p_x1;
+	double p_x2;
+	double p_y1;
+	double p_y2;
+	double p_z1;
+	double p_z2;
+}			t_point;
+
+typedef struct s_bres
+{
 	double	ex;
 	double	dx;
 	double	Dx;
 	double	xi;
-	double	y1;
-	double	y2;
 	double	ey;
 	double	dy;
 	double	Dy;
 	double	yi;
 }		t_bres;
 
-typedef struct s_point
-{
-	int x;
-	int y;
-	int z;
-	int color;
-}		t_point;
 
 typedef struct s_fdf
 {
 	int			x;
 	int			y;
-	int 		z;
+	int			z;
 	int			scale;
 	int			height;
 	int			width;
-	t_point		*point;
+	t_point		*points;
 	int			**map;
 	t_bres		*bres;
 	mlx_image_t	*img;
@@ -76,8 +81,8 @@ typedef struct s_fdf
 
 }			t_fdf;
 
-# define WIDTH 520
-# define HEIGHT 520
+# define WIDTH 1080
+# define HEIGHT 1080
 
 // PARSE-----------------------------------------------------------------------
 
@@ -101,9 +106,9 @@ int 	get_rgba(int r, int g, int b, int a);
 
 // UTILS_DRAW------------------------------------------------------------------
 
-void f_modif_bres(t_bres *new);
-void f_draw_x(t_fdf *fdf, int i, int color);
-void f_draw_y(t_fdf *fdf, int i, int color);
+void f_modif_bres(t_fdf *fdf);
+void f_draw_x(t_fdf *fdf, int color);
+void f_draw_y(t_fdf *fdf, int color);
 
 // INIT_MLX--------------------------------------------------------------------
 
@@ -117,6 +122,8 @@ void f_init_line_x(t_fdf *fdf);
 void f_init_line_y(t_fdf *fdf);
 void f_app_scale(t_fdf *fdf);
 void f_start_point(t_fdf *fdf);
+void f_projection(t_fdf *fdf);
+void f_proj(t_fdf *fdf);
 
 // DRAW------------------------------------------------------------------------
 

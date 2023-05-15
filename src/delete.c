@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 07:51:37 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/11 09:49:14 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/15 13:23:57 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void f_print_struct(t_fdf *fdf)
 
 void f_print_point(t_fdf *fdf)
 {
-	ft_printf("x1 = %d\n", fdf->bres->x1);
-	ft_printf("y1 = %d\n", fdf->bres->y1);
-	ft_printf("x2 = %d\n", fdf->bres->x2);
-	ft_printf("y2 = %d\n", fdf->bres->y2);
+	ft_printf("x1 = %d\n", fdf->points->p_x1);
+	ft_printf("y1 = %d\n", fdf->points->p_y1);
+	ft_printf("x2 = %d\n", fdf->points->p_x2);
+	ft_printf("y2 = %d\n", fdf->points->p_y2);
 	ft_printf("\n");
 }
