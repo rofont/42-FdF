@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 10:05:40 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/15 10:52:10 by rofontai         ###   ########.fr       */
+/*   Created: 2023/05/16 16:03:11 by romain            #+#    #+#             */
+/*   Updated: 2023/05/16 16:27:17 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_fdf	*f_init_fdf(void)
 	return (new);
 }
 
-
 void	f_error(char *msg)
 {
 	ft_printf("🚨 "RED" Error : "WHT" %s\n", msg);
@@ -55,9 +54,4 @@ void	f_cleanup(t_fdf *fdf, char *msg)
 		f_error(msg);
 	if (!msg)
 		exit(EXIT_SUCCESS);
-}
-
-int get_rgba(int r, int g, int b, int a)
-{
-    return (r << 24 | g << 16 | b << 8 | a);
 }

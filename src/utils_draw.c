@@ -3,65 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   utils_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 09:16:27 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/15 13:28:34 by rofontai         ###   ########.fr       */
+/*   Created: 2023/05/16 16:35:07 by romain            #+#    #+#             */
+/*   Updated: 2023/05/16 17:04:59 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void f_modif_bres(t_fdf *fdf)
+void f_init_line_x(t_fdf *fdf)
 {
-		fdf->bres->ex = fabs(fdf->points->p_x2 - fdf->points->p_x1);
-		fdf->bres->ey = fabs(fdf->points->p_y2 - fdf->points->p_y1);
-		fdf->bres->dx = 2*fdf->bres->ex;
-		fdf->bres->dy = 2*fdf->bres->ey;
-		fdf->bres->Dx = fdf->bres->ex;
-		fdf->bres->Dy = fdf->bres->ey;
-		fdf->bres->xi = 1;
-		fdf->bres->yi = 1;
+	fdf->points->x1 = fdf->x;
+	fdf->points->x2 = fdf->x + 1;
+	fdf->points->y1 = fdf->y;
+	fdf->points->y2 = fdf->y;
+	fdf->points->z1 = fdf->map[fdf->y][fdf->x];
+	fdf->points->z2 = fdf->map[fdf->y][fdf->x + 1];
 }
 
-void f_draw_x(t_fdf *fdf, int color)
+void f_init_line_y(t_fdf *fdf)
 {
-	int i;
-
-	i = 0;
-	while (i <= fdf->bres->Dx)
-	{
-		if (fdf->points->p_x1 > 0 && fdf->points->p_y1 > 0
-			&& fdf->points->p_x1 < WIDTH && fdf->points->p_y1 < HEIGHT)
-			mlx_put_pixel(fdf->img, fdf->points->p_x1, fdf->points->p_y1, color);
-		i++;
-		fdf->points->p_x1 += fdf->bres->xi;
-		fdf->bres->ex -= fdf->bres->dy;
-		if (fdf->bres->ex < 0)
-		{
-			fdf->points->p_y1 += fdf->bres->yi;
-			fdf->bres->ex+= fdf->bres->dx;
-		}
-	}
+	fdf->points->x1 = fdf->x;
+	fdf->points->x2 = fdf->x;
+	fdf->points->y1 = fdf->y;
+	fdf->points->y2 = fdf->y + 1;
+	fdf->points->z1 = fdf->map[fdf->y][fdf->x];
+	fdf->points->z2 = fdf->map[fdf->y + 1][fdf->x];
 }
 
-void f_draw_y(t_fdf *fdf, int color)
+void f_app_scale(t_fdf *fdf)
 {
-	int i;
 
-	i = 0;
-	while (i <= fdf->bres->Dy)
-	{
-		if (fdf->points->p_x1 > 0 && fdf->points->p_y1 > 0
-			&& fdf->points->p_x1 < WIDTH && fdf->points->p_y1 < HEIGHT)
-			mlx_put_pixel(fdf->img, fdf->points->p_x1, fdf->points->p_y1, color);
-		i++;
-		fdf->points->p_y1 += fdf->bres->yi;
-		fdf->bres->ey -= fdf->bres->dx;
-		if (fdf->bres->ey < 0)
-		{
-			fdf->points->p_x1 += fdf->bres->xi;
-			fdf->bres->ey+= fdf->bres->dy;
-		}
-	}
+	fdf->scale = 50;
+	fdf->points->p_x1 *= fdf->scale;
+	fdf->points->p_x2 *= fdf->scale;
+	fdf->points->p_y1 *= fdf->scale;
+	fdf->points->p_y2 *= fdf->scale;
+}
+
+void f_start_point(t_fdf *fdf)
+{
+	fdf->points->p_x1 += WIDTH/4;
+	fdf->points->p_y1 += HEIGHT/4;
+	fdf->points->p_x2 += WIDTH/4;
+	fdf->points->p_y2 += HEIGHT/4;
+
+}
+
+void f_proj(t_fdf *fdf)
+{
+	double angle = (30 * M_PI / 180.0);
+
+	fdf->points->p_x1 = (fdf->points->x1 - fdf->points->y1) * cos(angle);
+	fdf->points->p_y1 = (fdf->points->x1 + fdf->points->y1) * sin(angle) - fdf->points->z1;
+	fdf->points->p_x2 = (fdf->points->x2 - fdf->points->y2) * cos(angle);
+	fdf->points->p_y2 = (fdf->points->x2 + fdf->points->y2) * sin(angle) - fdf->points->z2;
 }

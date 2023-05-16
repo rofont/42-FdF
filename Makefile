@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
+#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 10:43:15 by rofontai          #+#    #+#              #
-#    Updated: 2023/05/15 11:14:45 by rofontai         ###   ########.fr        #
+#    Updated: 2023/05/16 16:45:04 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,12 @@ Z = $(shell tput -Txterm setaf 5)
 NAME	= fdf
 
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address #-lm
+CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address #-lm
 
 SRC_DIR	= ./src
-SRC		= main.c utils.c parse.c create_map.c init_mlx.c draw.c delete.c \
-			utils_draw.c
+SRC		= main.c utils.c parse.c create_map.c \
+			delete.c draw_mlx.c draw.c utils_draw.c \
+			bresenham.c
 #SRC		= maintest.c
 
 OBJ_DIR	= ./obj

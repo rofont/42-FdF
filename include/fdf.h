@@ -44,12 +44,12 @@ typedef struct s_point
 	double	y2;
 	double	z1;
 	double	z2;
-	double p_x1;
-	double p_x2;
-	double p_y1;
-	double p_y2;
-	double p_z1;
-	double p_z2;
+	double	p_x1;
+	double	p_x2;
+	double	p_y1;
+	double	p_y2;
+	double	p_z1;
+	double	p_z2;
 }			t_point;
 
 typedef struct s_bres
@@ -73,8 +73,8 @@ typedef struct s_fdf
 	int			scale;
 	int			height;
 	int			width;
-	t_point		*points;
 	int			**map;
+	t_point		*points;
 	t_bres		*bres;
 	mlx_image_t	*img;
 	mlx_t		*mlx;
@@ -84,56 +84,55 @@ typedef struct s_fdf
 # define WIDTH 1080
 # define HEIGHT 1080
 
+// UTILS-----------------------------------------------------------------------
+
+t_fdf	*f_init_fdf(void);
+void	f_error(char *msg);
+void	f_cleanup(t_fdf *fdf, char *msg);
+
 // PARSE-----------------------------------------------------------------------
 
 int		f_check_fdf(char *str);
 void	f_check_arg(int argc, char **argv);
 
 // CREATE_MAP------------------------------------------------------------------
-int		count_collum(char *str, char c);
-void	f_alloc_map(t_fdf *fdf);
+
+int	count_collum(char *str, char c);
 void	f_size_map(t_fdf *fdf, char *file);
+void	f_alloc_map(t_fdf *fdf);
 void	f_extract_point(t_fdf *fdf, char *line);
 void	f_create_map(t_fdf *fdf, char *arg);
 
-// UTILS-----------------------------------------------------------------------
+// DRAW_MLX--------------------------------------------------------------------
 
-t_fdf	*f_init_fdf(void);
-void	f_cleanup(t_fdf *fdf, char *msg);
-void	f_error(char *msg);
-t_point	*f_init_point(void);
-int 	get_rgba(int r, int g, int b, int a);
-
-// UTILS_DRAW------------------------------------------------------------------
-
-void f_modif_bres(t_fdf *fdf);
-void f_draw_x(t_fdf *fdf, int color);
-void f_draw_y(t_fdf *fdf, int color);
-
-// INIT_MLX--------------------------------------------------------------------
-
-void f_init_mlx(t_fdf *fdf);
-void draw_point(t_fdf *fdf);
-void f_draw_line(t_fdf *fdf);
-void f_map_scale(t_fdf *fdf);
-void f_draw_line_x(t_fdf *fdf);
-void f_draw_line_y(t_fdf *fdf);
-void f_init_line_x(t_fdf *fdf);
-void f_init_line_y(t_fdf *fdf);
-void f_app_scale(t_fdf *fdf);
-void f_start_point(t_fdf *fdf);
-void f_projection(t_fdf *fdf);
-void f_proj(t_fdf *fdf);
+int		get_rgba(int r, int g, int b, int a);
+void	f_mlx(t_fdf *fdf);
 
 // DRAW------------------------------------------------------------------------
 
-void f_bresenham(t_fdf *fdf, int color);
-t_point *calc_isometric(t_point *pts, int max_pts);
+void	f_draw_line_x(t_fdf *fdf);
+void	f_draw_line_y(t_fdf *fdf);
+void	f_draw_line(t_fdf *fdf);
+
+// UTILS_DRAW------------------------------------------------------------------
+
+void	f_init_line_x(t_fdf *fdf);
+void	f_init_line_y(t_fdf *fdf);
+void	f_app_scale(t_fdf *fdf);
+void	f_start_point(t_fdf *fdf);
+void	f_proj(t_fdf *fdf);
+
+// BRESENHAM-------------------------------------------------------------------
+
+void	f_modif_bres(t_fdf *fdf);
+void	f_draw_x(t_fdf *fdf, int color);
+void	f_draw_y(t_fdf *fdf, int color);
+void	f_bresenham(t_fdf *fdf, int color);
+// void f_dda_algo(t_fdf *fdf);
 
 // DELETE----------------------------------------------------------------------
-
-void f_print_tabint(int **tab, int colum, int line);
-void f_print_struct(t_fdf *fdf);
-void f_print_point(t_fdf *fdf);
+void	f_print_tabint(int **tab, int colum, int line);
+void	f_print_struct(t_fdf *fdf);
+void	f_print_point(t_fdf *fdf);
 
 #endif
