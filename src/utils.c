@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:03:11 by romain            #+#    #+#             */
-/*   Updated: 2023/05/16 16:27:17 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/17 10:31:13 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_fdf	*f_init_fdf(void)
 		new->height = 0;
 		new->width = 0;
 		new->scale = 0;
+		new->start_x = 0;
+		new->start_y = 0;
 		new->bres = ft_calloc(sizeof(t_bres), 1);
 		new->points = ft_calloc(sizeof(t_point), 1);
 		new->map = NULL;

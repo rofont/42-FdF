@@ -71,6 +71,8 @@ typedef struct s_fdf
 	int			y;
 	int			z;
 	int			scale;
+	int			start_x;
+	int			start_y;
 	int			height;
 	int			width;
 	int			**map;
@@ -97,7 +99,7 @@ void	f_check_arg(int argc, char **argv);
 
 // CREATE_MAP------------------------------------------------------------------
 
-int	count_collum(char *str, char c);
+int		count_collum(char *str, char c);
 void	f_size_map(t_fdf *fdf, char *file);
 void	f_alloc_map(t_fdf *fdf);
 void	f_extract_point(t_fdf *fdf, char *line);
@@ -110,6 +112,7 @@ void	f_mlx(t_fdf *fdf);
 
 // DRAW------------------------------------------------------------------------
 
+void	f_scale(t_fdf *fdf);
 void	f_draw_line_x(t_fdf *fdf);
 void	f_draw_line_y(t_fdf *fdf);
 void	f_draw_line(t_fdf *fdf);

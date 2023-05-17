@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:40:24 by romain            #+#    #+#             */
-/*   Updated: 2023/05/16 16:42:32 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/17 10:29:06 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void f_draw_y(t_fdf *fdf, int color)
 
 void f_bresenham(t_fdf *fdf, int color)
 {
-	if (fdf->points->z2 > 5)
+	if (fdf->points->z1 > 5 || fdf->points->z2 > 5)
 		color = get_rgba(99, 255, 219, 100);
-	if (fdf->points->z2  <= 0)
+	else if (fdf->points->z1  <= 0)
 		color = get_rgba(255, 142, 255, 100);
 	f_modif_bres(fdf);
 	if (fdf->points->p_x1 > fdf->points->p_x2)

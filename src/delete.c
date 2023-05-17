@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delete.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 07:51:37 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/16 16:19:58 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/17 10:32:49 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ void f_print_struct(t_fdf *fdf)
 	ft_printf("y = %d\n", fdf->y);
 	ft_printf("z = %d\n", fdf->z);
 	ft_printf("scale = %d\n", fdf->scale);
+	ft_printf("start_x = %d\n", fdf->start_x);
+	ft_printf("start_y = %d\n", fdf->start_y);
 	ft_printf("height = %d\n", fdf->height);
 	ft_printf("width = %d\n", fdf->width);
-	f_print_tabint(fdf->map, fdf->height, fdf->width);
+	// f_print_tabint(fdf->map, fdf->height, fdf->width);
 
 }
 
