@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:35:07 by romain            #+#    #+#             */
-/*   Updated: 2023/05/16 17:04:59 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/17 09:15:46 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void f_init_line_y(t_fdf *fdf)
 void f_app_scale(t_fdf *fdf)
 {
 
-	fdf->scale = 50;
-	fdf->points->p_x1 *= fdf->scale;
-	fdf->points->p_x2 *= fdf->scale;
-	fdf->points->p_y1 *= fdf->scale;
-	fdf->points->p_y2 *= fdf->scale;
+	fdf->scale = 10;
+	fdf->points->x1 *= fdf->scale;
+	fdf->points->x2 *= fdf->scale;
+	fdf->points->y1 *= fdf->scale;
+	fdf->points->y2 *= fdf->scale;
 }
 
 void f_start_point(t_fdf *fdf)
@@ -53,7 +53,7 @@ void f_start_point(t_fdf *fdf)
 
 void f_proj(t_fdf *fdf)
 {
-	double angle = (30 * M_PI / 180.0);
+	double angle = 30 * M_PI / 180.0;
 
 	fdf->points->p_x1 = (fdf->points->x1 - fdf->points->y1) * cos(angle);
 	fdf->points->p_y1 = (fdf->points->x1 + fdf->points->y1) * sin(angle) - fdf->points->z1;
