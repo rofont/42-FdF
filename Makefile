@@ -6,7 +6,7 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 10:43:15 by rofontai          #+#    #+#              #
-#    Updated: 2023/05/16 16:45:04 by romain           ###   ########.fr        #
+#    Updated: 2023/05/17 20:19:00 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address #-lm
 SRC_DIR	= ./src
 SRC		= main.c utils.c parse.c create_map.c \
 			delete.c draw_mlx.c draw.c utils_draw.c \
-			bresenham.c
+			bresenham.c move.c
 #SRC		= maintest.c
 
 OBJ_DIR	= ./obj

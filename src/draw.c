@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:32:12 by romain            #+#    #+#             */
-/*   Updated: 2023/05/17 10:55:40 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/17 22:10:07 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void f_start(t_fdf *fdf)
 	fdf->start_x = WIDTH/4 + c + WIDTH/8;
 	fdf->start_y = HEIGHT/4 + c;
 }
-
-
 
 void f_scale(t_fdf *fdf)
 {
@@ -52,6 +50,7 @@ void f_draw_line_x(t_fdf *fdf)
 	f_init_line_x(fdf);
 	f_app_scale(fdf);
 	f_proj(fdf);
+	f_translate (fdf);
 	f_start_point(fdf);
 	f_bresenham(fdf, get_rgba(255, 255, 255, 100));
 }
@@ -62,13 +61,14 @@ void f_draw_line_y(t_fdf *fdf)
 	f_init_line_y(fdf);
 	f_app_scale(fdf);
 	f_proj(fdf);
+	f_translate(fdf);
 	f_start_point(fdf);
 	f_bresenham(fdf, get_rgba(255, 255, 255, 100));
 }
 
 void f_draw_line(t_fdf *fdf)
 {
-	f_scale(fdf);
+	f_erase(fdf);
 	f_start(fdf);
 	while (fdf->y < fdf->height)
 	{

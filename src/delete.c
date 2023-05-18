@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delete.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 07:51:37 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/17 10:32:49 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/17 22:07:12 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void f_print_struct(t_fdf *fdf)
 
 void f_print_point(t_fdf *fdf)
 {
-	ft_printf("x1 = %d\n", fdf->points->p_x1);
-	ft_printf("y1 = %d\n", fdf->points->p_y1);
-	ft_printf("x2 = %d\n", fdf->points->p_x2);
-	ft_printf("y2 = %d\n", fdf->points->p_y2);
-	ft_printf("z1 = %d\n", fdf->points->p_z1);
-	ft_printf("z2 = %d\n", fdf->points->p_z2);
-
+	ft_printf("\n");
+	printf("x1 = %f\n", fdf->points->p_x1);
+	printf("scale = %d\n", fdf->scale);
+	printf("x2 = %f\n", fdf->points->p_x2);
+	// printf("y2 = %f\n", fdf->points->p_y2);
+	// printf("z1 = %f\n", fdf->points->p_z1);
+	// printf("z2 = %f\n", fdf->points->p_z2);
 	ft_printf("\n");
 }
