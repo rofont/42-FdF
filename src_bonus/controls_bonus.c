@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   controls_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 16:08:27 by romain            #+#    #+#             */
-/*   Updated: 2023/05/18 20:08:49 by romain           ###   ########.fr       */
+/*   Created: 2023/05/18 20:40:54 by romain            #+#    #+#             */
+/*   Updated: 2023/05/18 22:09:17 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../include/fdf_bonus.h"
 
-int	main(int argc, char **argv)
+void	f_view_iso(t_fdf *fdf)
 {
-	t_fdf	*fdf;
+	fdf->cam->iso = 0;
+	f_magic_board(fdf);
+}
 
-	fdf = f_init_fdf();
-	f_check_arg(argc, argv);
-	f_create_map(fdf, argv[1]);
-	f_scale(fdf);
-	f_mlx(fdf);
-	f_cleanup(fdf, NULL);
-	return (0);
+void	f_view_para(t_fdf *fdf)
+{
+	fdf->cam->iso = 1;
+	f_magic_board(fdf);
+}
+
+void	f_move_right(t_fdf *fdf)
+{
+	fdf->cam->offset_x += 5;
+	f_magic_board(fdf);
 }
