@@ -66,9 +66,12 @@ typedef struct s_bres
 
 typedef struct s_cam
 {
-	int	offset_x;
-	int	offset_y;
-	int iso;
+	int		offset_x;
+	int		offset_y;
+	double	offset_z;
+	double	angle;
+	int		zoom;
+	int		iso;
 }		t_cam;
 
 
@@ -97,10 +100,14 @@ typedef struct s_fdf
 t_fdf	*f_init_fdf(void);
 void	f_cleanup(t_fdf *fdf, char *msg);
 void	f_error(char *msg);
+
+// UTILS_ZERO------------------------------------------------------------------
+
 void	f_fdf_zero(t_fdf *fdf);
 void	f_bres_zero(t_fdf *fdf);
 void	f_points_zero(t_fdf *fdf);
 void	f_magic_board(t_fdf *fdf);
+void	f_cam_zero(t_fdf *fdf);
 
 // PARSE-----------------------------------------------------------------------
 
@@ -118,6 +125,9 @@ void	f_create_map(t_fdf *fdf, char *arg);
 // INIT_MLX--------------------------------------------------------------------
 
 void	f_mlx(t_fdf *fdf);
+void 	my_scrollhook(double xdelta, double ydelta, void* param);
+void	my_hook_move(mlx_key_data_t keydata, t_fdf *fdf);
+void	my_keyhook(mlx_key_data_t keydata, void *param);
 int		get_rgba(int r, int g, int b, int a);
 
 // DRAW_MAP--------------------------------------------------------------------
@@ -143,10 +153,25 @@ void	f_draw_x(t_fdf *fdf, int color);
 void	f_draw_y(t_fdf *fdf, int color);
 void 	f_bresenham(t_fdf *fdf, int color);
 
+// CONTROLS_MOVE---------------------------------------------------------------
+
+void	f_move_right(t_fdf *fdf);
+void	f_move_left(t_fdf *fdf);
+void	f_move_up(t_fdf *fdf);
+void	f_move_down(t_fdf *fdf);
+void	f_rotate_angle(t_fdf *fdf);
+
 // CONTROLS--------------------------------------------------------------------
 
+void	f_zoom_plus(t_fdf *fdf);
+void	f_zoom_minus(t_fdf *fdf);
+void	f_move_z(t_fdf *fdf);
+
+// CONTROLS_2------------------------------------------------------------------
+
+void	f_return_start(t_fdf *fdf);
 void	f_view_iso(t_fdf *fdf);
 void	f_view_para(t_fdf *fdf);
-void	f_move_right(t_fdf *fdf);
+
 
 #endif

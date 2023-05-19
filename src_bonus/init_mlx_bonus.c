@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:21:14 by romain            #+#    #+#             */
-/*   Updated: 2023/05/18 22:13:35 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/19 11:40:27 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,46 +17,54 @@ int	get_rgba(int r, int g, int b, int a)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
+void	my_scrollhook(double xdelta, double ydelta, void *param)
+{
+	t_fdf	*fdf;
+
+	(void)xdelta;
+	fdf = (t_fdf *)param;
+	if (ydelta > 0)
+		f_zoom_plus(fdf);
+	else if (ydelta < 0)
+		f_zoom_minus(fdf);
+}
+
+void	my_hook_move(mlx_key_data_t keydata, t_fdf *fdf)
+{
+	(void)keydata;
+	if (mlx_is_key_down (fdf->mlx, MLX_KEY_RIGHT))
+		f_move_right(fdf);
+	if (mlx_is_key_down (fdf->mlx, MLX_KEY_LEFT))
+		f_move_left(fdf);
+	if (mlx_is_key_down (fdf->mlx, MLX_KEY_UP))
+		f_move_up(fdf);
+	if (mlx_is_key_down (fdf->mlx, MLX_KEY_DOWN))
+		f_move_down(fdf);
+}
+
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_fdf	*fdf;
 
 	(void)keydata;
 	fdf = (t_fdf *)param;
+	my_hook_move(keydata, fdf);
 	if (mlx_is_key_down (fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
 	if (mlx_is_key_down (fdf->mlx, MLX_KEY_P))
 		f_view_para(fdf);
 	if (mlx_is_key_down (fdf->mlx, MLX_KEY_I))
 		f_view_iso(fdf);
-	if (mlx_is_key_down (fdf->mlx, MLX_KEY_RIGHT))
-		f_move_right(fdf);
-	if (mlx_is_key_down (fdf->mlx, MLX_KEY_LEFT))
-	{
-		fdf->cam->offset_x -= 5;
-		f_magic_board(fdf);
-	}
-	if (mlx_is_key_down (fdf->mlx, MLX_KEY_UP))
-	{
-		fdf->cam->offset_y -= 5;
-		f_magic_board(fdf);
-	}
-	if (mlx_is_key_down (fdf->mlx, MLX_KEY_DOWN))
-	{
-		fdf->cam->offset_y += 5;
-		f_magic_board(fdf);
-	}
 	if (mlx_is_key_down (fdf->mlx, MLX_KEY_W))
-	{
-		fdf->scale += 1;
-		f_magic_board(fdf);
-	}
+		f_zoom_plus(fdf);
 	if (mlx_is_key_down (fdf->mlx, MLX_KEY_S))
-	{
-		fdf->scale -= 1;
-		f_magic_board(fdf);
-	}
-
+		f_zoom_minus(fdf);
+	if (mlx_is_key_down (fdf->mlx, MLX_KEY_A))
+		f_rotate_angle(fdf);
+	if (mlx_is_key_down (fdf->mlx, MLX_KEY_Z))
+		f_move_z(fdf);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_SPACE))
+		f_return_start(fdf);
 }
 
 void	f_mlx(t_fdf *fdf)
@@ -68,6 +76,7 @@ void	f_mlx(t_fdf *fdf)
 	f_draw_line(fdf);
 	mlx_image_to_window(fdf->mlx, fdf->img, 0, 0);
 	mlx_key_hook(fdf->mlx, &my_keyhook, fdf);
+	mlx_scroll_hook(fdf->mlx, &my_scrollhook, fdf);
 	mlx_loop(fdf->mlx);
 	mlx_terminate(fdf->mlx);
 }

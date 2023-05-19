@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
+#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 10:43:15 by rofontai          #+#    #+#              #
-#    Updated: 2023/05/18 22:06:57 by romain           ###   ########.fr        #
+#    Updated: 2023/05/19 11:07:41 by rofontai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRC		= main.c utils.c parse.c create_map.c \
 SRC_DIR_BONUS	= ./src_bonus
 SRC_BONUS		= main_bonus.c utils_bonus.c parse_bonus.c create_map_bonus.c \
 			init_mlx_bonus.c draw_map_bonus.c utils_draw_bonus.c bresenham_bonus.c \
-			controls_bonus.c
+			controls_bonus.c utils_zero_bonus.c controls_2_bonus.c controls_move_bonus.c \
+			
 
 
 OBJ_DIR	= ./obj

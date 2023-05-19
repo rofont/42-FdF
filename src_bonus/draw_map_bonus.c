@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:31:38 by romain            #+#    #+#             */
-/*   Updated: 2023/05/18 22:07:27 by romain           ###   ########.fr       */
+/*   Updated: 2023/05/19 11:05:29 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	f_draw_line(t_fdf *fdf)
 {
-	// f_magic_board(fdf);
 	while (fdf->y < fdf->height)
 	{
 		while (fdf->x < fdf->width)

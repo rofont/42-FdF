@@ -1,31 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   controls_bonus.c                                   :+:      :+:    :+:   */
+/*   controls_move_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 20:40:54 by romain            #+#    #+#             */
-/*   Updated: 2023/05/19 11:08:41 by rofontai         ###   ########.fr       */
+/*   Created: 2023/05/19 10:51:55 by rofontai          #+#    #+#             */
+/*   Updated: 2023/05/19 10:52:40 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf_bonus.h"
 
-void	f_zoom_plus(t_fdf *fdf)
+void	f_move_right(t_fdf *fdf)
 {
-	fdf->cam->zoom += 1;
+	fdf->cam->offset_x += 5;
 	f_magic_board(fdf);
 }
 
-void	f_zoom_minus(t_fdf *fdf)
+void	f_move_left(t_fdf *fdf)
 {
-	fdf->cam->zoom -= 1;
+	fdf->cam->offset_x -= 5;
 	f_magic_board(fdf);
 }
 
-void	f_move_z(t_fdf *fdf)
+void	f_move_up(t_fdf *fdf)
 {
-	fdf->cam->offset_z += 1;
+	fdf->cam->offset_y -= 5;
+	f_magic_board(fdf);
+}
+
+void	f_move_down(t_fdf *fdf)
+{
+	fdf->cam->offset_y += 5;
+	f_magic_board(fdf);
+}
+
+void	f_rotate_angle(t_fdf *fdf)
+{
+	fdf->cam->angle += 0.01;
 	f_magic_board(fdf);
 }
