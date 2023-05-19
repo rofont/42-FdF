@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:31:38 by romain            #+#    #+#             */
-/*   Updated: 2023/05/19 12:41:43 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:03:59 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	f_draw_line_x(t_fdf *fdf)
 	f_projection(fdf);
 	f_translate(fdf);
 	f_start_point(fdf);
-	f_bresenham(fdf, get_rgba(255, 255, 255, 100));
+	f_change_rgba(fdf);
+	f_bresenham(fdf);
 }
 
 void	f_draw_line_y(t_fdf *fdf)
@@ -46,7 +47,8 @@ void	f_draw_line_y(t_fdf *fdf)
 	f_projection(fdf);
 	f_translate(fdf);
 	f_start_point(fdf);
-	f_bresenham(fdf, get_rgba(255, 255, 255, 100));
+	f_change_rgba(fdf);
+	f_bresenham(fdf);
 }
 
 void	f_scale(t_fdf *fdf)
@@ -64,6 +66,7 @@ void	f_scale(t_fdf *fdf)
 	}
 	fdf->scale /= 2;
 	fdf->cam->offset_z = 1;
+	fdf->cam->colors = get_rgba(240, 240, 240, 100);
 }
 
 void	f_translate(t_fdf *fdf)

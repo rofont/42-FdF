@@ -72,6 +72,7 @@ typedef struct s_cam
 	double	angle;
 	int		zoom;
 	int		iso;
+	int 	colors;
 }		t_cam;
 
 
@@ -101,6 +102,7 @@ t_fdf	*f_init_fdf(void);
 void	f_cleanup(t_fdf *fdf, char *msg);
 void	f_error(char *msg);
 void	f_menu(t_fdf *fdf);
+void	f_change_rgba(t_fdf *fdf);
 
 // UTILS_ZERO------------------------------------------------------------------
 
@@ -137,6 +139,7 @@ void	f_draw_line(t_fdf *fdf);
 void	f_draw_line_x(t_fdf *fdf);
 void	f_draw_line_y(t_fdf *fdf);
 void	f_scale(t_fdf *fdf);
+void	f_translate(t_fdf *fdf);
 
 // UTILS_DRAW------------------------------------------------------------------
 
@@ -145,14 +148,13 @@ void 	f_init_line_y(t_fdf *fdf);
 void 	f_app_scale(t_fdf *fdf);
 void 	f_projection(t_fdf *fdf);
 void 	f_start_point(t_fdf *fdf);
-void	f_translate(t_fdf *fdf);
 
 // BRESENHAM-------------------------------------------------------------------
 
 void	f_modif_bres(t_fdf *fdf);
-void	f_draw_x(t_fdf *fdf, int color);
-void	f_draw_y(t_fdf *fdf, int color);
-void 	f_bresenham(t_fdf *fdf, int color);
+void	f_draw_x(t_fdf *fdf);
+void	f_draw_y(t_fdf *fdf);
+void 	f_bresenham(t_fdf *fdf);
 
 // CONTROLS_MOVE---------------------------------------------------------------
 

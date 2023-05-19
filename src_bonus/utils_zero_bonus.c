@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:37:09 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/19 12:40:13 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:42:00 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	f_cam_zero(t_fdf *fdf)
 	fdf->cam->offset_x = 0;
 	fdf->cam->offset_y = 0;
 	fdf->cam->offset_z = 1;
+	fdf->cam->colors = get_rgba(240, 240, 240, 100);
 }
 
 void	f_points_zero(t_fdf *fdf)

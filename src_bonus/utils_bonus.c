@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:10:57 by romain            #+#    #+#             */
-/*   Updated: 2023/05/19 13:16:57 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:09:07 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,14 @@ void	f_menu(t_fdf *fdf)
 	ft_printf("\n");
 	ft_printf("🔼 = zoom +\n");
 	ft_printf("🔽 = zoom -\n");
+	ft_printf("\n");
+}
+
+void	f_change_rgba(t_fdf *fdf)
+{
+	if ((fdf->points->z1 * fdf->cam->offset_z) > 5
+		|| (fdf->points->z2 * fdf->cam->offset_z) > 5)
+		fdf->cam->colors = get_rgba(99, 255, 219, 100);
+	else if ((fdf->points->z1 * fdf->cam->offset_z) <= 0)
+		fdf->cam->colors = get_rgba(255, 142, 255, 100);
 }
