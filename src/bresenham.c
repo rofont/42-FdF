@@ -3,74 +3,76 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 16:40:24 by romain            #+#    #+#             */
-/*   Updated: 2023/05/17 10:29:06 by rofontai         ###   ########.fr       */
+/*   Created: 2023/05/18 16:50:26 by romain            #+#    #+#             */
+/*   Updated: 2023/05/18 20:01:04 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void f_modif_bres(t_fdf *fdf)
+void	f_modif_bres(t_fdf *fdf)
 {
 		fdf->bres->ex = fabs(fdf->points->p_x2 - fdf->points->p_x1);
 		fdf->bres->ey = fabs(fdf->points->p_y2 - fdf->points->p_y1);
-		fdf->bres->dx = 2*fdf->bres->ex;
-		fdf->bres->dy = 2*fdf->bres->ey;
+		fdf->bres->dx = 2 * fdf->bres->ex;
+		fdf->bres->dy = 2 * fdf->bres->ey;
 		fdf->bres->Dx = fdf->bres->ex;
 		fdf->bres->Dy = fdf->bres->ey;
 		fdf->bres->xi = 1;
 		fdf->bres->yi = 1;
 }
 
-void f_draw_x(t_fdf *fdf, int color)
+void	f_draw_x(t_fdf *fdf, int color)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i <= fdf->bres->Dx)
 	{
 		if (fdf->points->p_x1 > 0 && fdf->points->p_y1 > 0
 			&& fdf->points->p_x1 < WIDTH && fdf->points->p_y1 < HEIGHT)
-			mlx_put_pixel(fdf->img, fdf->points->p_x1, fdf->points->p_y1, color);
+			mlx_put_pixel(fdf->img, fdf->points->p_x1, fdf->points->p_y1,
+				color);
 		i++;
 		fdf->points->p_x1 += fdf->bres->xi;
 		fdf->bres->ex -= fdf->bres->dy;
 		if (fdf->bres->ex < 0)
 		{
 			fdf->points->p_y1 += fdf->bres->yi;
-			fdf->bres->ex+= fdf->bres->dx;
+			fdf->bres->ex += fdf->bres->dx;
 		}
 	}
 }
 
-void f_draw_y(t_fdf *fdf, int color)
+void	f_draw_y(t_fdf *fdf, int color)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i <= fdf->bres->Dy)
 	{
 		if (fdf->points->p_x1 > 0 && fdf->points->p_y1 > 0
 			&& fdf->points->p_x1 < WIDTH && fdf->points->p_y1 < HEIGHT)
-			mlx_put_pixel(fdf->img, fdf->points->p_x1, fdf->points->p_y1, color);
+			mlx_put_pixel(fdf->img, fdf->points->p_x1, fdf->points->p_y1,
+				color);
 		i++;
 		fdf->points->p_y1 += fdf->bres->yi;
 		fdf->bres->ey -= fdf->bres->dx;
 		if (fdf->bres->ey < 0)
 		{
 			fdf->points->p_x1 += fdf->bres->xi;
-			fdf->bres->ey+= fdf->bres->dy;
+			fdf->bres->ey += fdf->bres->dy;
 		}
 	}
 }
 
-void f_bresenham(t_fdf *fdf, int color)
+void	f_bresenham(t_fdf *fdf, int color)
 {
 	if (fdf->points->z1 > 5 || fdf->points->z2 > 5)
 		color = get_rgba(99, 255, 219, 100);
-	else if (fdf->points->z1  <= 0)
+	else if (fdf->points->z1 <= 0)
 		color = get_rgba(255, 142, 255, 100);
 	f_modif_bres(fdf);
 	if (fdf->points->p_x1 > fdf->points->p_x2)
@@ -82,27 +84,3 @@ void f_bresenham(t_fdf *fdf, int color)
 	if (fdf->bres->Dx < fdf->bres->Dy)
 		f_draw_y(fdf, color);
 }
-
-// void f_dda_algo(t_fdf *fdf)
-// {
-// 	double step = 0;
-// 	int i = 1;
-// 	fdf->bres->dx = fdf->points->p_x2 - fdf->points->p_x1;
-// 	fdf->bres->dy = fdf->points->p_y2 - fdf->points->p_y1;
-
-// 	if (fabs(fdf->bres->dx) > fabs(fdf->bres->dy))
-// 		step = fabs(fdf->bres->dx);
-// 	else
-// 		step = fabs (fdf->bres->dy);
-// 	fdf->bres->xi = fdf->bres->dx/step;
-// 	fdf->bres->yi = fdf->bres->dy/step;
-// 	while (i <= step)
-// 	{
-// 		if (fdf->points->p_x1 > 0 && fdf->points->p_y1 > 0
-// 			&& fdf->points->p_x1 < WIDTH && fdf->points->p_y1 < HEIGHT)
-// 			mlx_put_pixel(fdf->img, fdf->points->p_x1, fdf->points->p_y1, get_rgba(255, 255, 255, 100));
-// 		fdf->points->p_x1 += fdf->bres->xi;
-// 		fdf->points->p_y1 += fdf->bres->yi;
-// 		i++;
-// 	}
-// }

@@ -64,24 +64,16 @@ typedef struct s_bres
 	double	yi;
 }		t_bres;
 
-typedef struct s_view
-{
-	double	offset_x;
-	double	offset_y;
-}			t_view;
-
 typedef struct s_fdf
 {
 	int			x;
 	int			y;
 	int			z;
 	int			scale;
-	int			start_x;
-	int			start_y;
+	int			iso;
 	int			height;
 	int			width;
 	int			**map;
-	t_view		*view;
 	t_point		*points;
 	t_bres		*bres;
 	mlx_image_t	*img;
@@ -89,16 +81,14 @@ typedef struct s_fdf
 
 }			t_fdf;
 
-# define WIDTH 1080
+# define WIDTH 720
 # define HEIGHT 720
 
 // UTILS-----------------------------------------------------------------------
 
 t_fdf	*f_init_fdf(void);
-void	f_error(char *msg);
 void	f_cleanup(t_fdf *fdf, char *msg);
-t_view *f_init_view(void);
-void 	f_erase(t_fdf *fdf);
+void	f_error(char *msg);
 
 // PARSE-----------------------------------------------------------------------
 
@@ -113,45 +103,31 @@ void	f_alloc_map(t_fdf *fdf);
 void	f_extract_point(t_fdf *fdf, char *line);
 void	f_create_map(t_fdf *fdf, char *arg);
 
-// DRAW_MLX--------------------------------------------------------------------
+// INIT_MLX--------------------------------------------------------------------
 
-int		get_rgba(int r, int g, int b, int a);
-void 	my_keyhook(mlx_key_data_t keydata, void *param);
 void	f_mlx(t_fdf *fdf);
+int		get_rgba(int r, int g, int b, int a);
 
-// DRAW------------------------------------------------------------------------
+// DRAW_MAP--------------------------------------------------------------------
 
-void	f_scale(t_fdf *fdf);
-void 	f_start(t_fdf *fdf);
+void	f_draw_line(t_fdf *fdf);
 void	f_draw_line_x(t_fdf *fdf);
 void	f_draw_line_y(t_fdf *fdf);
-void	f_draw_line(t_fdf *fdf);
+void	f_scale(t_fdf *fdf);
 
 // UTILS_DRAW------------------------------------------------------------------
 
-void	f_init_line_x(t_fdf *fdf);
-void	f_init_line_y(t_fdf *fdf);
-void	f_app_scale(t_fdf *fdf);
-void	f_start_point(t_fdf *fdf);
-void	f_proj(t_fdf *fdf);
-
-void f_translate (t_fdf *fdf);
+void 	f_init_line_x(t_fdf *fdf);
+void 	f_init_line_y(t_fdf *fdf);
+void 	f_app_scale(t_fdf *fdf);
+void 	f_projection(t_fdf *fdf);
+void 	f_start_point(t_fdf *fdf);
 
 // BRESENHAM-------------------------------------------------------------------
 
 void	f_modif_bres(t_fdf *fdf);
 void	f_draw_x(t_fdf *fdf, int color);
 void	f_draw_y(t_fdf *fdf, int color);
-void	f_bresenham(t_fdf *fdf, int color);
-// void f_dda_algo(t_fdf *fdf);
-
-// MOVE------------------------------------------------------------------------
-
-void 	f_move(mlx_key_data_t keydata, t_fdf *fdf);
-
-// DELETE----------------------------------------------------------------------
-void	f_print_tabint(int **tab, int colum, int line);
-void	f_print_struct(t_fdf *fdf);
-void	f_print_point(t_fdf *fdf);
+void 	f_bresenham(t_fdf *fdf, int color);
 
 #endif
