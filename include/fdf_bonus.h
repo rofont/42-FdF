@@ -100,6 +100,7 @@ typedef struct s_fdf
 t_fdf	*f_init_fdf(void);
 void	f_cleanup(t_fdf *fdf, char *msg);
 void	f_error(char *msg);
+void	f_menu(t_fdf *fdf);
 
 // UTILS_ZERO------------------------------------------------------------------
 
@@ -159,19 +160,21 @@ void	f_move_right(t_fdf *fdf);
 void	f_move_left(t_fdf *fdf);
 void	f_move_up(t_fdf *fdf);
 void	f_move_down(t_fdf *fdf);
-void	f_rotate_angle(t_fdf *fdf);
+void	f_rotate_angle_plus(t_fdf *fdf);
 
 // CONTROLS--------------------------------------------------------------------
 
 void	f_zoom_plus(t_fdf *fdf);
 void	f_zoom_minus(t_fdf *fdf);
-void	f_move_z(t_fdf *fdf);
+void	f_move_z_up(t_fdf *fdf);
+void	f_move_z_down(t_fdf *fdf);
 
 // CONTROLS_2------------------------------------------------------------------
 
 void	f_return_start(t_fdf *fdf);
 void	f_view_iso(t_fdf *fdf);
 void	f_view_para(t_fdf *fdf);
+void	f_rotate_angle_minus(t_fdf *fdf);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:31:38 by romain            #+#    #+#             */
-/*   Updated: 2023/05/19 11:05:29 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:41:43 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	f_scale(t_fdf *fdf)
 		fdf->scale++;
 	}
 	fdf->scale /= 2;
+	fdf->cam->offset_z = 1;
 }
 
 void	f_translate(t_fdf *fdf)

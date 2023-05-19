@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:51:55 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/19 10:52:40 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:10:53 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	f_move_down(t_fdf *fdf)
 	f_magic_board(fdf);
 }
 
-void	f_rotate_angle(t_fdf *fdf)
+void	f_rotate_angle_plus(t_fdf *fdf)
 {
-	fdf->cam->angle += 0.01;
+	fdf->cam->angle += 0.1;
 	f_magic_board(fdf);
 }

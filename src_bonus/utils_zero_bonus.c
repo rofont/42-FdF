@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:37:09 by rofontai          #+#    #+#             */
-/*   Updated: 2023/05/19 11:16:40 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:40:13 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	f_cam_zero(t_fdf *fdf)
 	fdf->cam->zoom = 0;
 	fdf->cam->offset_x = 0;
 	fdf->cam->offset_y = 0;
-	fdf->cam->offset_z = 0;
+	fdf->cam->offset_z = 1;
 }
 
 void	f_points_zero(t_fdf *fdf)

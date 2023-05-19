@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:34:39 by romain            #+#    #+#             */
-/*   Updated: 2023/05/19 11:04:54 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:45:15 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ void	f_projection(t_fdf *fdf)
 		fdf->points->p_x1 = (fdf->points->x1 - fdf->points->y1)
 			* cos(angle + fdf->cam->angle);
 		fdf->points->p_y1 = (fdf->points->x1 + fdf->points->y1)
-			* sin(angle + fdf->cam->angle) - fdf->points->z1;
+			* sin(angle + fdf->cam->angle)
+			- (fdf->points->z1 * fdf->cam->offset_z);
 		fdf->points->p_x2 = (fdf->points->x2 - fdf->points->y2)
 			* cos(angle + fdf->cam->angle);
 		fdf->points->p_y2 = (fdf->points->x2 + fdf->points->y2)
-			* sin(angle + fdf->cam->angle) - fdf->points->z2;
+			* sin(angle + fdf->cam->angle)
+			- (fdf->points->z2 * fdf->cam->offset_z);
 	}
 	if (fdf->cam->iso == 1)
 	{

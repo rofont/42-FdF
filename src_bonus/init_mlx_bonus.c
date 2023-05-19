@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:21:14 by romain            #+#    #+#             */
-/*   Updated: 2023/05/19 11:40:27 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:49:09 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,14 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 		f_zoom_plus(fdf);
 	if (mlx_is_key_down (fdf->mlx, MLX_KEY_S))
 		f_zoom_minus(fdf);
-	if (mlx_is_key_down (fdf->mlx, MLX_KEY_A))
-		f_rotate_angle(fdf);
+	if (mlx_is_key_down (fdf->mlx, MLX_KEY_R))
+		f_rotate_angle_plus(fdf);
+	if (mlx_is_key_down (fdf->mlx, MLX_KEY_T))
+		f_rotate_angle_minus(fdf);
 	if (mlx_is_key_down (fdf->mlx, MLX_KEY_Z))
-		f_move_z(fdf);
+		f_move_z_up(fdf);
+	if (mlx_is_key_down (fdf->mlx, MLX_KEY_X))
+		f_move_z_down(fdf);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_SPACE))
 		f_return_start(fdf);
 }

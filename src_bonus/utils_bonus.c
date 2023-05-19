@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:10:57 by romain            #+#    #+#             */
-/*   Updated: 2023/05/19 10:42:49 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:16:57 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,30 @@ void	f_error(char *msg)
 {
 	ft_printf("🚨 "RED" Error : "WHT" %s\n", msg);
 	exit (EXIT_FAILURE);
+}
+
+void	f_menu(t_fdf *fdf)
+{
+	(void)fdf;
+	ft_printf("\n");
+	ft_printf(" ----- "MAG"MENU 🗺"WHT"  ----- \n");
+	ft_printf("\n");
+	ft_printf("↑ = up\n");
+	ft_printf("↓ = down\n");
+	ft_printf("← = left\n");
+	ft_printf("→ = right\n");
+	ft_printf("p = view parallel\n");
+	ft_printf("i = view isometric\n");
+	ft_printf("w = zoom +\n");
+	ft_printf("s = zoom -\n");
+	ft_printf("r = angle +\n");
+	ft_printf("t = angle -\n");
+	ft_printf("z = z value +\n");
+	ft_printf("x = z value -\n");
+	ft_printf("space = re init value\n");
+	ft_printf("\n");
+	ft_printf(" --- "MAG"SCROLL_MOUSE 🖱"WHT" --- \n");
+	ft_printf("\n");
+	ft_printf("🔼 = zoom +\n");
+	ft_printf("🔽 = zoom -\n");
 }
